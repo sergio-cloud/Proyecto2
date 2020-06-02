@@ -15,22 +15,23 @@ import javax.persistence.Id;
 public class Perfil implements Serializable{
 	
 	@Id
-	private String nickNae;
+	private String nickName;
 	private boolean isHombre;
 	private int edad;
 	private String descripcion;
 	private Poblacion poblacion;
+	private String foto;
 	
 	public Perfil() {
 		super();
 	}
 
-	public String getNickNae() {
-		return nickNae;
+	public String getNickName() {
+		return nickName;
 	}
 
 	public void setNickNae(String nickNae) {
-		this.nickNae = nickNae;
+		this.nickName = nickNae;
 	}
 
 	public boolean isHombre() {
@@ -67,7 +68,7 @@ public class Perfil implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Perfil [nickNae=" + nickNae + ", isHombre=" + isHombre + ", edad=" + edad + ", descripcion="
+		return "Perfil [nickName=" + nickName + ", isHombre=" + isHombre + ", edad=" + edad + ", descripcion="
 				+ descripcion + ", poblacion=" + poblacion + "]";
 	}
 }
