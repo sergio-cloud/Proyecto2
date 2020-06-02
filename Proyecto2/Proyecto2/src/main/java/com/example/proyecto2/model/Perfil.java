@@ -18,6 +18,7 @@ public class Perfil implements Serializable{
 	
 	@Id
 	private String nickName;
+	private String password;
 	private boolean isHombre;
 	private int edad;
 	private String descripcion;
@@ -27,21 +28,21 @@ public class Perfil implements Serializable{
 	public Perfil() {
 		super();
 	}
-	
-	public String getFoto() {
-		return foto;
-	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	public String getnickName() {
+	public String getNickName() {
 		return nickName;
 	}
 
-	public void setnickName(String nickName) {
+	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public boolean isHombre() {
@@ -76,9 +77,28 @@ public class Perfil implements Serializable{
 		this.poblacion = poblacion;
 	}
 
-	@Override
-	public String toString() {
-		return "Perfil [nickName=" + nickName + ", isHombre=" + isHombre + ", edad=" + edad + ", descripcion="
-				+ descripcion + ", poblacion=" + poblacion + ", foto=" + foto + "]";
+	public String getFoto() {
+		return foto;
 	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Perfil(String nickName, String password, boolean isHombre, int edad, String descripcion, Poblacion poblacion,
+			String foto) {
+		super();
+		this.nickName = nickName;
+		this.password = password;
+		this.isHombre = isHombre;
+		this.edad = edad;
+		this.descripcion = descripcion;
+		this.poblacion = poblacion;
+		this.foto = foto;
+	}
+
 }
