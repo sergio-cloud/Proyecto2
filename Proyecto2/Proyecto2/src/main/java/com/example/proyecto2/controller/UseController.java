@@ -1,8 +1,13 @@
 package com.example.proyecto2.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
@@ -17,7 +22,7 @@ import com.example.proyecto2.model.Poblacion;
 public class UseController {
  
 	@GetMapping("/")
-	public String logion(ModelMap model)throws Exception {
+	public String login(ModelMap model)throws Exception {
 		model.addAttribute("perfil", new Perfil());
 		//model.addAttribute("poblacion",new Poblacion());
 		return "login"; 
@@ -28,6 +33,22 @@ public class UseController {
 		model.addAttribute("perfil", new Perfil());
 		model.addAttribute("poblacion", new Poblacion());
 		return "altaPerfil"; 
+	}
+	//Nino ver mañana
+	@PostMapping("/save")
+	public String saveRegistration(
+							@Valid Perfil perfil,
+							BindingResult result, 
+							ModelMap model) {
+
+		if (result.hasErrors()) {
+			System.out.println("--- Hay algunos errores");
+			return "altaPerfil";
+		}
+
+		model.addAttribute("success", "Estimado " + perfil.getNickName()
+				+ " , su registro se ha completado de forma correcta");
+		return  "redirect:/";
 	}
 	
 }
