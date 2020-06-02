@@ -11,14 +11,15 @@
     <fieldset>
         <div style="text-align:center">
             <legend>Introduce tus datos:</legend>
-            <form th:action="@{/save}" method="post" th:object="${perfil}">
+            <form th:action="@{/login}" method="post" th:object="${perfil}">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nickname" th:field="*{nickname}">
+                    <input type="text" class="form-control" placeholder="Nickname" th:field="*{nickName}">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Contraseña" th:field="*{password}">
                 </div>
                 <input type="submit" value="Entrar">
+               <a href="altaPerfil">¿No tienes cuenta todavia Guapo/a?</a>
             </form>
         </div>
     </fieldset>
