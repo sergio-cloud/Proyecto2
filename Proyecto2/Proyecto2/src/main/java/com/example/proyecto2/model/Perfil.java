@@ -14,15 +14,26 @@ import javax.persistence.Id;
 @Entity
 public class Perfil implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	private String nickName;
 	private boolean isHombre;
 	private int edad;
 	private String descripcion;
 	private Poblacion poblacion;
-	
+	private String foto;
+
 	public Perfil() {
 		super();
+	}
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public String getnickName() {
@@ -68,6 +79,6 @@ public class Perfil implements Serializable{
 	@Override
 	public String toString() {
 		return "Perfil [nickName=" + nickName + ", isHombre=" + isHombre + ", edad=" + edad + ", descripcion="
-				+ descripcion + ", poblacion=" + poblacion + "]";
+				+ descripcion + ", poblacion=" + poblacion + ", foto=" + foto + "]";
 	}
 }
