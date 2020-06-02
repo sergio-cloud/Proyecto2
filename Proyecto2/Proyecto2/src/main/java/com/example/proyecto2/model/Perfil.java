@@ -22,6 +22,7 @@ public class Perfil implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	//Nino Revisar mañana
 	@Size(min=3, max=40) 
 	private String nickName;
 	
