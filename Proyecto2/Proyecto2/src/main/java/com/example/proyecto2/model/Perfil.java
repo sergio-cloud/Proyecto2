@@ -26,12 +26,12 @@ public class Perfil implements Serializable{
 		super();
 	}
 
-	public String getNickName() {
+	public String getnickName() {
 		return nickName;
 	}
 
-	public void setNickNae(String nickNae) {
-		this.nickName = nickNae;
+	public void setnickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public boolean isHombre() {
