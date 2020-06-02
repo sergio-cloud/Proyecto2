@@ -20,6 +20,7 @@ public class Perfil implements Serializable{
 	private int edad;
 	private String descripcion;
 	private Poblacion poblacion;
+	private String foto;
 	
 	public Perfil() {
 		super();
