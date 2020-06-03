@@ -2,63 +2,61 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/altaPerfil.css">
-    <title>altaPerfil</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/altaPerfil.css">
+<title>altaPerfil</title>
 </head>
 
 <body>
-    <div id="contenedor">
-        <h2>Formulario 1<br />REGISTRO </h2>
-        <form method="post" th:object="${perfil}" th:action="@{/save2}">
-            <table border="1">
-                <tr>
-                    <th><label for="nickName">Nickname</label>NickName
-							(*)</th>
-                    <td><input type="text" th:field="*{nickName}" />
-                    
-                    <div th:if="${#fields.hasErrors('nickName')}"
-					th:errors="*{nickName}" class="has-error help-inline">nickName
-					Error</div>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <th><label for="password">Contraseña</label>Password
-							(*)</th>
-                    <td><input type="password" th:field="*{password}" /> 
-                    
-                    <div th:if="${#fields.hasErrors('password')}"
-					th:errors="*{password}" class="has-error help-inline">password
-					Error</div>
-					
+	<div id="contenedor">
+		<h2>
+			Formulario 1<br />REGISTRO
+		</h2>
+		<form method="post" th:object="${perfil}" th:action="@{/save2}">
+			<table border="1">
+				<tr>
+					<th><label for="nickName">Nickname</label>NickName (*)</th>
+					<td><input type="text" th:field="*{nickName}" />
+
+						<div th:if="${#fields.hasErrors('nickName')}"
+							th:errors="*{nickName}" class="has-error help-inline">nickName
+							Error</div></td>
+
+				</tr>
+				<tr>
+					<th><label for="password">Contraseña</label>Password (*)</th>
+					<td><input type="password" th:field="*{password}" />
+
+						<div th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}" class="has-error help-inline">password
+							Error</div></td>
+				</tr>
+				<tr>
+					<th><label for="edad">Edad</label></th>
+					<td><input type="number" class="form-control" id="edad"
+						placeholder="18" min="18" th:field="*{edad}" /></td>
+				</tr>
+				<tr>
+					<th><label for="poblacion">Poblacion</label></th>
+					<td><select name="Población" th:field="*{poblacion}"
+						class="form-contol">
+							<option th:each="poblacion : ${ListaPoblacion}"
+								th:value="${poblacion.idPoblacion}"
+								th:text="${poblacion.nombrePoblacion}"></option>
+					</select>
+				</tr>
+				<tr>
+					<th><label for="genero">Genero</label></th>
+					<td><input type="radio" id="male" name="genero" value="1">
+						<label for="male">Hombre</label><br> <input type="radio"
+						id="female" name="genero" value="0"> <label for="female">Mujer</label><br>
+
 					</td>
-                </tr>
-                <tr>
-                    <th><label for="edad">Edad</label></th>
-                    <td><input type="number" class="form-control" id="edad" placeholder="18" min="18" th:field="*{edad}" /></td>
-                </tr>
-                <tr>
-                    <th><label for="poblacion">Poblacion</label></th>
-                    <td> <select name="Población" th:field="*{poblacion}">
-                            <option th:each="poblacion : ${PoblacionLista}" th:value="${poblacion.idPoblacion}" th:text="${poblacion.nombrePoblacion}">  
-                           
-					</option>
-					
-                        </select> 
-                </tr>
-                <tr>
-                    <th><label for="genero">Genero</label></th>
-                    <td> <input type="radio" id="male" name="genero" value="1"> 
-                    <label for="male">Hombre</label><br> 
-                    <input type="radio" id="female" name="genero" value="0"> 
-                    <label for="female">Mujer</label><br> 
-                 
-                    </td>
-                </tr>
-            </table> <input type="submit" value="Dar de alta" />
-        </form>
-    </div>
+				</tr>
+			</table>
+			<input type="submit" value="Dar de alta" />
+		</form>
+	</div>
 </body>
 
 </html>

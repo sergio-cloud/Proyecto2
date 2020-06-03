@@ -73,7 +73,7 @@ public class UseController {
 			System.out.println("--- Hay algunos errores");
 			return "altaPerfil";
 		}
-
+		//PerfilService.add(perfil);
 		model.addAttribute("success", "Estimado " + perfil.getNickName()
 				+ " , su registro se ha completado de forma correcta");
 		return  "bienvenida";
