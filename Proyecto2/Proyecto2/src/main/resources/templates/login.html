@@ -13,10 +13,16 @@
             <legend>Introduce tus datos:</legend>
             <form th:action="@{/login}" method="post" th:object="${perfil}">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nickname" th:field="*{nickName}">
+                    <input type="text" class="form-control" placeholder="Apodo" th:field="*{nickName}"/>
+                    <div th:if="${#fields.hasErrors('nickName')}"
+								th:errors="*{nickName}" class="has-error help-inline">nickName
+								Error</div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña" th:field="*{password}">
+                    <input type="password" class="form-control" placeholder="Contraseña" th:field="*{password}"/>
+                     <div th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}" class="has-error help-inline">password
+								Error</div>
                 </div>
                 <input type="submit" value="Entrar">
                <a href="altaPerfil">¿No tienes cuenta todavia Guapo/a?</a>

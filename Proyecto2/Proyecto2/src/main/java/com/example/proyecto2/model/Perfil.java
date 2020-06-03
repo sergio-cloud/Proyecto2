@@ -5,6 +5,11 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * @author Sergio
  * @version 02/06/2020
@@ -17,12 +22,25 @@ public class Perfil implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	//Nino Revisar mañana
+	@Size(min=3, max=40) 
 	private String nickName;
+	
+	@Size(min=3, max=30)
 	private String password;
+	
+	@NotEmpty
 	private boolean isHombre;
+	
+	@NotEmpty
 	private int edad;
+	
+	@NotNull 
 	private String descripcion;
+	
+	@NotEmpty
 	private Poblacion poblacion;
+	
 	private String foto;
 
 	public Perfil() {
