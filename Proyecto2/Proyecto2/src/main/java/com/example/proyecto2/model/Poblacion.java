@@ -2,6 +2,7 @@ package com.example.proyecto2.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,7 +16,9 @@ import javax.persistence.Id;
 public class Poblacion implements Serializable{
 	
 	@Id
+	@Column(name="idpoblacion")
 	private int idPoblacion;
+	@Column(name="nombre")
 	private String nombrePoblacion;
 	public Poblacion() {
 		super();
