@@ -25,6 +25,8 @@ public class UseController {
 	
 	@Autowired
 	PoblacionService PoblacionService;
+	@Autowired
+	PerfilService PerfilService;
  
 	@GetMapping("/")
 	public String login(ModelMap model)throws Exception {
@@ -32,11 +34,12 @@ public class UseController {
 		//model.addAttribute("poblacion",new Poblacion());
 		return "login"; 
 	}
-	
+
 	@GetMapping("/altaPerfil")
 	public String registroPerfil(ModelMap model)throws Exception {
 		model.addAttribute("perfil", new Perfil());
 		model.addAttribute("poblacion", new Poblacion());
+		model.addAttribute("ListaPoblacion", PoblacionService.findAll());
 		return "altaPerfil"; 
 	}
 	//Nino ver mañana
