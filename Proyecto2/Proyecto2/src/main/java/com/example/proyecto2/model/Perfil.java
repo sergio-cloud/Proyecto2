@@ -118,4 +118,9 @@ public class Perfil implements Serializable {
 		this.foto = foto;
 	}
 
+	@Override
+	public String toString() {
+		return "Perfil [nickName=" + nickName + ", password=" + password + ", isHombre=" + isHombre + ", edad=" + edad
+				+ ", descripcion=" + descripcion + ", poblacion=" + poblacion + ", foto=" + foto + "]";
+	}
 }
