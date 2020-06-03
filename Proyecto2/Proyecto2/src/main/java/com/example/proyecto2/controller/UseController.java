@@ -12,9 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.example.proyecto2.service.*;
-
-
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
 
@@ -26,57 +26,52 @@ import com.example.proyecto2.model.Poblacion;
 
 @Controller
 public class UseController {
-	
+
 	@Autowired
 	PoblacionService PoblacionService;
 	@Autowired
 	PerfilService PerfilService;
- 
+
 	@GetMapping("/")
-	public String login(ModelMap model)throws Exception {
+	public String login(ModelMap model) throws Exception {
 		model.addAttribute("perfil", new Perfil());
-		//model.addAttribute("poblacion",new Poblacion());
-		return "login"; 
+		// model.addAttribute("poblacion",new Poblacion());
+		return "login";
 	}
 
 	@GetMapping("/altaPerfil")
-	public String registroPerfil(ModelMap model)throws Exception {
+	public String registroPerfil(ModelMap model) throws Exception {
 		model.addAttribute("perfil", new Perfil());
 		model.addAttribute("poblacion", new Poblacion());
 		model.addAttribute("ListaPoblacion", PoblacionService.findAll());
-		return "altaPerfil"; 
+		return "altaPerfil";
 	}
-	//Nino ver mañana
+
+	@PostMapping("/altaPerfil")
+	public String saveRegistration(@ModelAttribute @Valid Perfil perfil, BindingResult result, ModelMap model) {
+		model.addAttribute("ListaPoblacion", PoblacionService.findAll());
+		if (result.hasErrors()) {
+			System.out.println("--- Hay algunos errores");
+			return "altaPerfil";
+		}
+		PerfilService.add(perfil);
+		model.addAttribute("success",
+				"Estimado " + perfil.getNickName() + " , su registro se ha completado de forma correcta");
+		return "bienvenida";
+	}
+
+	// Nino ver mañana
 	@PostMapping("/save1")
-	public String saveLogin(
-							@Valid Perfil perfil,
-							BindingResult result, 
-							ModelMap model) {
+	public String saveLogin(@Valid Perfil perfil, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			System.out.println("--- Hay algunos errores");
 			return "login";
 		}
 
-		model.addAttribute("success", "Estimado " + perfil.getNickName()
-				+ " , su registro se ha completado de forma correcta");
-		return  "bienvenida";
+		model.addAttribute("success",
+				"Estimado " + perfil.getNickName() + " , su registro se ha completado de forma correcta");
+		return "bienvenida";
 	}
-	
-	@PostMapping("/save2")
-	public String saveRegistration(
-							@Valid Perfil perfil,
-							BindingResult result, 
-							ModelMap model) {
 
-		if (result.hasErrors()) {
-			System.out.println("--- Hay algunos errores");
-			return "altaPerfil";
-		}
-		//PerfilService.add(perfil);
-		model.addAttribute("success", "Estimado " + perfil.getNickName()
-				+ " , su registro se ha completado de forma correcta");
-		return  "bienvenida";
-	}
-	
 }

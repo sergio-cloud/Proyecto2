@@ -2,10 +2,11 @@ package com.example.proyecto2.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 //import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,28 +18,28 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-public class Perfil implements Serializable{
-	
+public class Perfil implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	
-	@Size(min=3, max=40) 
+	@Column(name = "nickname")
+	@Size(min = 3, max = 40)
 	private String nickName;
-	
-	@Size(min=3, max=30)
+
+	@Size(min = 3, max = 30)
 	private String password;
-	
-	//@NotEmpty
+
+	@Column(name = "ishombre")
 	private boolean isHombre;
 
 	private int edad;
-	
+
 	private String descripcion;
-	
-	//@NotEmpty
+	@ManyToOne()
+	@JoinColumn(name = "idpoblacion")
 	private Poblacion poblacion;
-	
+
 	private String foto;
 
 	public Perfil() {
