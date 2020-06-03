@@ -10,5 +10,7 @@ public interface PerfilService {
 	
 	public void add(Perfil perfil);
 	
-	public boolean comprobar(Perfil perfil);
+	public boolean existe(String nombre);
+	
+	public boolean isPerfil(String nombre, String pass);
 }
