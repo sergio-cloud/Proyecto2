@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -22,23 +22,21 @@ public class Perfil implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	//Nino Revisar mañana
+	
 	@Size(min=3, max=40) 
 	private String nickName;
 	
 	@Size(min=3, max=30)
 	private String password;
 	
-	@NotEmpty
+	//@NotEmpty
 	private boolean isHombre;
-	
-	@NotEmpty
+
 	private int edad;
 	
-	@NotNull 
 	private String descripcion;
 	
-	@NotEmpty
+	//@NotEmpty
 	private Poblacion poblacion;
 	
 	private String foto;
