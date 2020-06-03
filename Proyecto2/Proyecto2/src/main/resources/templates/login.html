@@ -11,7 +11,7 @@
     <fieldset>
         <div style="text-align:center">
             <legend>Introduce tus datos:</legend>
-            <form th:action="@{/login}" method="post" th:object="${perfil}">
+            <form th:action="@{/save1}" method="post" th:object="${perfil}">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Apodo" th:field="*{nickName}"/>
                     <div th:if="${#fields.hasErrors('nickName')}"
