@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,9 +30,8 @@ public class Perfil implements Serializable {
 
 	@Size(min = 3, max = 30)
 	private String password;
-
-	@Column(name = "ishombre")
-	private boolean isHombre;
+	@NotEmpty
+	private String genero;
 
 	private int edad;
 
@@ -62,12 +62,12 @@ public class Perfil implements Serializable {
 		this.password = password;
 	}
 
-	public boolean isHombre() {
-		return isHombre;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setHombre(boolean isHombre) {
-		this.isHombre = isHombre;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public int getEdad() {
@@ -106,12 +106,12 @@ public class Perfil implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Perfil(String nickName, String password, boolean isHombre, int edad, String descripcion, Poblacion poblacion,
+	public Perfil(String nickName, String password, String genero, int edad, String descripcion, Poblacion poblacion,
 			String foto) {
 		super();
 		this.nickName = nickName;
 		this.password = password;
-		this.isHombre = isHombre;
+		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
 		this.poblacion = poblacion;
@@ -120,7 +120,7 @@ public class Perfil implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Perfil [nickName=" + nickName + ", password=" + password + ", isHombre=" + isHombre + ", edad=" + edad
+		return "Perfil [nickName=" + nickName + ", password=" + password + ", genero=" + genero + ", edad=" + edad
 				+ ", descripcion=" + descripcion + ", poblacion=" + poblacion + ", foto=" + foto + "]";
 	}
 }
