@@ -55,6 +55,7 @@ public class UseController {
 			model.addAttribute("success",
 					"Estimado " + perfil.getNickName() + " , se ha loggeado de forma correcta");
 			System.out.println("--- entro");
+			model.addAttribute("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
 			
 			return "bienvenida";
 		}

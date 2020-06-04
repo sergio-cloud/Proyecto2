@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.DAO.PerfilDAO;
+import com.example.proyecto2.DAO.PerfilDAOImp;
 import com.example.proyecto2.util.*;
 
 @Service
@@ -13,6 +14,9 @@ public class PerfilServiceImp implements PerfilService {
 
 	@Autowired
 	private PerfilDAO perfilDAO;
+	
+	@Autowired
+	private PerfilDAOImp perfilDAOCustom;
 
 	@Override
 	public List<Perfil> findAll() {
@@ -55,4 +59,9 @@ public class PerfilServiceImp implements PerfilService {
 		return listPerfil;
 	  
 	  }
+	
+	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
+		List<Perfil >lista=perfilDAOCustom.listaPerfilDesconocido(perfil);
+		return lista;
+	}
 }
