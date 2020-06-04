@@ -1,16 +1,25 @@
 package com.example.proyecto2.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+//import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
-import com.example.proyecto2.service.PoblacionService;
+import com.example.proyecto2.service.PerfilService;
+//import com.example.proyecto2.service.PoblacionService;
 import com.github.javafaker.Faker;
 
 public class GeneradorPerfiles {
-	public static Perfil generar() {
+	@Autowired
+	PerfilService servicio;
 
-		Poblacion poblacion=new Poblacion();
+	public static Perfil Generar() {
+
+		Poblacion poblacion = new Poblacion();
 		Faker faker = new Faker();
 		Perfil aux = new Perfil();
 		aux.setNickName(faker.name().fullName() + faker.number().numberBetween(15, 99));
@@ -20,10 +29,23 @@ public class GeneradorPerfiles {
 		} else
 			aux.setGenero("Mujer");
 		aux.setPassword("1234");
-		poblacion.setIdPoblacion(faker.number().numberBetween(5, 54));
-		poblacion.setNombrePoblacion("Esto ha sido hecho por Nino y Alvaro");
+		poblacion.setIdPoblacion(faker.number().numberBetween(4, 54));
+		poblacion.setNombrePoblacion("Madrid");
 		aux.setPoblacion(poblacion);
 		System.out.println(aux.toString());
 		return aux;
+	}
+
+	public static List<Perfil> generarLista(int cantidad) {
+
+		List<Perfil> listPerfil = new ArrayList<Perfil>();
+		//Perfil aux = new Perfil();
+		for (int i = 0; i < cantidad; i++) {
+			//aux = Generar();
+			//if (aux.getNickName() == servicio.existe()) {
+				listPerfil.add(Generar());
+			//}
+		}
+		return listPerfil;
 	}
 }

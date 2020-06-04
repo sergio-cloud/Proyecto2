@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.DAO.PerfilDAO;
+import com.example.proyecto2.util.*;
 
 @Service
 public class PerfilServiceImp implements PerfilService {
@@ -44,4 +45,14 @@ public class PerfilServiceImp implements PerfilService {
 		return false;
 
 	}
+
+	@Override
+	 public List<Perfil> getListaRandom (int cantidad) {
+	   
+	     List<Perfil> listPerfil= GeneradorPerfiles.generarLista(cantidad);
+	    
+	    
+		return listPerfil;
+	  
+	  }
 }

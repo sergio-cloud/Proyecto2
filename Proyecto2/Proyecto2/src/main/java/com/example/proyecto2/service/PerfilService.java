@@ -13,4 +13,6 @@ public interface PerfilService {
 	public boolean existe(String nombre);
 	
 	public boolean isPerfil(String nombre, String pass);
+	
+	public List<Perfil> getListaRandom (int id);
 }
