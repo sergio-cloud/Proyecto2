@@ -15,7 +15,7 @@
 		<form method="post" th:object="${perfil}" th:action="@{/altaPerfil}">
 			<table border="1">
 				<tr>
-					<th><label for="nickName">Nickname (*)</label></th>
+					<th><label for="nickName">Nickname</label>NickName (*)</th>
 					<td><input type="text" th:field="*{nickName}" />
 
 						<div th:if="${#fields.hasErrors('nickName')}"
@@ -24,7 +24,7 @@
 
 				</tr>
 				<tr>
-					<th><label for="password">Contraseña (*)</label></th>
+					<th><label for="password">Contraseña</label>Password (*)</th>
 					<td><input type="password" th:field="*{password}" />
 
 						<div th:if="${#fields.hasErrors('password')}"
@@ -32,7 +32,7 @@
 							Error</div></td>
 				</tr>
 				<tr>
-					<th><label for="edad">Edad (*)</label></th>
+					<th><label for="edad">Edad</label></th>
 					<td><input type="number" class="form-control" id="edad"
 						placeholder="18" min="18" th:field="*{edad}" /></td>
 				</tr>
@@ -46,20 +46,22 @@
 					</select>
 				</tr>
 				<tr>
-					<th><label for="genero">Genero (*)</label></th>
-					<td><input type="radio" id="male" name="genero" value="Hombre" checked>
+					<th><label for="genero">Genero</label></th>
+					<td><input type="radio" id="male" name="genero" value="hombre" checked>
 						<label for="male">Hombre</label><br> <input type="radio"
-						id="female" name="genero" value="Mujer"> <label for="female">Mujer</label><br>
+						id="female" name="genero" value="mujer"> <label for="female">Mujer</label><br>
 
-						<div th:if="${#fields.hasErrors('genero')}"
-							th:errors="*{genero}" class="has-error help-inline">genero
-							Error</div></td>
-		
 					</td>
 					
 				</tr>
+				
 			</table>
 			<input type="submit" value="Dar de alta" />
+			
+			<div class="warning">
+					<h3>Mensaje de confirmación</h3>
+					<span th:text="${warning}" /> <br />
+				</div>
 		</form>
 	</div>
 </body>

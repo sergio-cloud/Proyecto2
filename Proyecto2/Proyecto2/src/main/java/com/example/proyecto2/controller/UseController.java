@@ -1,7 +1,7 @@
 package com.example.proyecto2.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import javax.validation.Valid;
 
@@ -12,7 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 
 import com.example.proyecto2.service.*;
 import com.example.proyecto2.model.Perfil;
@@ -46,22 +46,24 @@ public class UseController {
 			System.out.println("--- Hay algunos errores");
 			return "login";
 		}
+		
 		if (PerfilService.isPerfil(perfil.getNickName(),perfil.getPassword())) {
 			model.addAttribute("perfil",perfil);
-		//	System.out.println("\n\n\nperfil: "+model.getAttribute("perfil"));//---------------------------------------------------------------------------------------------------------------------
-		return "bienvenida";
+			model.addAttribute("success",
+					"Estimado " + perfil.getNickName() + " , se ha loggeado de forma correcta");
+			System.out.println("--- entro");
+			return "bienvenida";
 		}
-		else return "login";
+		else if(!PerfilService.isPerfil(perfil.getNickName(),perfil.getPassword())) {
+			
+			model.addAttribute("warning",
+				perfil.getNickName() + " No existe en la base de datos."); 
+			System.out.println("--- entro");
+		
+	}
+		return "login";
 	}
 	
-	/*@GetMapping("/bienvenida")
-	public String bienvenida(ModelMap model, @ModelAttribute Perfil perfil) throws Exception {
-		Perfil p = (Perfil)model.getAttribute("perfil");
-		model.addAttribute("success",
-				"Estimaoodo " + p.getNickName() + " , su registro se ha completado de forma correcta");
-		System.out.println("perfil2: "+p);//------------------------------------------------------------------------------------------------------------------------------ 
-		return "bienvenida";
-	}*/
 	
 	@GetMapping("/altaPerfil")
 	public String registroPerfil(ModelMap model) throws Exception {
@@ -85,7 +87,8 @@ public class UseController {
 			return "bienvenida";
 		} else {
 			model.addAttribute("warning",
-					perfil.getNickName() + " ya existe en la base de datos.");
+					perfil.getNickName() + " Ya existe en la base de datos.");
+			System.out.println("--- entro");
 			return "altaPerfil";
 		}
 	}
