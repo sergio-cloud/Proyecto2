@@ -27,11 +27,18 @@
 						th:errors="*{password}" class="has-error help-inline">password
 						Error</div>
 				</div>
-				<span th:text="${warning}" /> <br /> <input type="submit"
-					value="Entrar"> <a href="altaPerfil">¿No tienes cuenta
-					todavia Guapo/a?</a>
+
+				<input type="submit" value="Entrar"> <a href="altaPerfil">¿No
+					tienes cuenta todavia Guapo/a?</a>
+
+				<div class="success">
+					<span th:text="${success}" /> <br />
+
+					<div class="warning">
+						<h3>Mensaje de confirmación</h3>
+						<span th:text="${warning}" /> <br />
+					</div>
 			</form>
-		</div>
 	</fieldset>
 </body>
 </html>

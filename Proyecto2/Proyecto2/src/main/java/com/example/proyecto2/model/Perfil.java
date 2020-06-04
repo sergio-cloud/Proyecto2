@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
+
 //import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,7 +30,7 @@ public class Perfil implements Serializable {
 
 	@Size(min = 3, max = 30)
 	private String password;
-	@NotEmpty
+	
 	private String genero;
 
 	private int edad;

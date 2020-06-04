@@ -36,8 +36,8 @@ public class PerfilServiceImp implements PerfilService {
 	public boolean isPerfil(String nombre, String pass) {
 		List<Perfil> comprobar = perfilDAO.findAll();
 		for (int i = 0; i < comprobar.size(); i++) {
-			if (comprobar.get(i).getNickName().equalsIgnoreCase(nombre)
-					&& comprobar.get(i).getPassword().equals(pass)) {
+			if ((comprobar.get(i).getNickName().equalsIgnoreCase(nombre))
+					&& (comprobar.get(i).getPassword().equals(pass))) {
 				return true;
 			}
 		}
