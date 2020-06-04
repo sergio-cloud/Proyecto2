@@ -28,9 +28,9 @@ public class PerfilDAOImp {
 							"                (SELECT nickname2\r\n" + 
 							"                FROM descarte\r\n" + 
 							"                WHERE nickname1 = ?);", Perfil.class);
-			query.setParameter(1, "pepeMalote");
-			query.setParameter(2, "pepeMalote");
-			query.setParameter(3, "pepeMalote");
+			query.setParameter(1, perfil.getNickName());
+			query.setParameter(2, perfil.getNickName());
+			query.setParameter(3, perfil.getNickName());
 			return query.getResultList();
 	}
 	

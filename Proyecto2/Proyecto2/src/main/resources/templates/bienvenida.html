@@ -22,12 +22,11 @@
 					<td><span th:text="${perfil.nickName}" /></td>
 					<td><span th:text="${perfil.password}" /></td>
 					
-				<!-- <select name="Perfiles" th:field="*{listPerfil}"
+				<select name="Perfiles" th:field="*{listaDesconocido}"
 						class="form-contol">
-							<option th:each="perfil : ${listPerfil}"
-								th:value="${perfil.}"
-								th:text="${PERFILES}"></option>
-					</select> -->	
+							<option th:each="desconocido : ${listaDesconocido}"
+								th:text="${desconocido.nickName}" th:value="${desconocido.nickName}"></option>
+					</select>
 					
 				</tr>					
 			</tbody>
