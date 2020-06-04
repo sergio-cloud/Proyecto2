@@ -2,6 +2,8 @@ package com.example.proyecto2.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.proyecto2.model.Perfil;
 
 public interface PerfilService {
@@ -15,4 +17,7 @@ public interface PerfilService {
 	public boolean isPerfil(String nombre, String pass);
 	
 	public List<Perfil> getListaRandom (int id);
+	
+	public List<Perfil> listaPerfilDesconocido(Perfil perfil);
+
 }
