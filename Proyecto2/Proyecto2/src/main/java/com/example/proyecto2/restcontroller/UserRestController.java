@@ -1,6 +1,7 @@
 package com.example.proyecto2.restcontroller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ public class UserRestController {
 	PerfilService PerfilService;
 	
 	
-	
+	//LISTADO DE TODAS LAS POBLACIONES   NINO
 	@RequestMapping(
 			value = "/poblacion/listado", 
 			method = RequestMethod.GET, 
@@ -35,6 +36,20 @@ public class UserRestController {
 		return PoblacionService.findAll();
 	}
 	
+	//DEVUELVE UNA POBLACION (idPoblacion)    SERGIO
+	@RequestMapping(
+			value = "/poblacion/{idPoblacion}", 
+			method = RequestMethod.GET, 
+			headers = {"Accept=application/json" }, 
+			produces = "application/json; charset=utf-8")
+	
+	public Optional<Poblacion> getPoblacionByIdPoblacion(@PathVariable int idPoblacion) {
+		return PoblacionService.findByPoblacion(idPoblacion);
+	}
+	
+	
+	
+	//DEVUELVE LISTADO DE TODOS LOS PERFILES REGISTRADOS   NINO
 	@RequestMapping(
 			value = "/perfil/listado", 
 			method = RequestMethod.GET, 
@@ -44,6 +59,5 @@ public class UserRestController {
 	public List<Perfil> getPerfiles() {
 		return PerfilService.findAll();
 	}
-	
 	
 }

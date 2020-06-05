@@ -3,6 +3,8 @@ package com.example.proyecto2.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,9 @@ import com.example.proyecto2.service.PerfilService;
 import com.github.javafaker.Faker;
 
 public class GeneradorPerfiles {
-	@Autowired
-	PerfilService servicio;
 
+	EntityManager em;
+	
 	public static Perfil Generar() {
 
 		Poblacion poblacion = new Poblacion();
@@ -32,20 +34,16 @@ public class GeneradorPerfiles {
 		poblacion.setIdPoblacion(faker.number().numberBetween(4, 54));
 		poblacion.setNombrePoblacion("Madrid");
 		aux.setPoblacion(poblacion);
-		System.out.println(aux.toString());
-		return aux;
+		System.out.println("\n"+aux.toString());
+		return aux; 
 	}
-
+/*
 	public static List<Perfil> generarLista(int cantidad) {
 
 		List<Perfil> listPerfil = new ArrayList<Perfil>();
-		//Perfil aux = new Perfil();
 		for (int i = 0; i < cantidad; i++) {
-			//aux = Generar();
-			//if (aux.getNickName() == servicio.existe()) {
-				listPerfil.add(Generar());
-			//}
+			listPerfil.add(Generar());
 		}
 		return listPerfil;
-	}
+	}*/
 }

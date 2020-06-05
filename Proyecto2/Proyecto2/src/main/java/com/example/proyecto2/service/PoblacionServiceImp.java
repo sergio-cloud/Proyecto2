@@ -1,6 +1,7 @@
 package com.example.proyecto2.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class PoblacionServiceImp implements PoblacionService{
 	@Override
 	public List<Poblacion> findAll() {
 		return poblacionDAO.findAll();
+	}
+
+	@Override
+	public Optional<Poblacion> findByPoblacion(int idPoblacion) {
+		return poblacionDAO.findById(idPoblacion);
 	}
 
 }

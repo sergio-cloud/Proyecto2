@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.proyecto2.service.*;
+import com.example.proyecto2.util.GeneradorPerfiles;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
 
@@ -32,13 +33,10 @@ public class UseController {
 	PoblacionService PoblacionService;
 	@Autowired
 	PerfilService PerfilService;
-	// @Autowired
-	// GeneradorPerfiles Perfilutil;
 
 	@GetMapping("/")
 	public String login(ModelMap model) throws Exception {
 		model.addAttribute("perfil", new Perfil());
-		// model.addAttribute("poblacion",new Poblacion());
 		return "login";
 	}
 
@@ -54,6 +52,10 @@ public class UseController {
 			model.addAttribute("perfil", perfil);
 			model.addAttribute("success", "Estimado " + perfil.getNickName() + " , se ha loggeado de forma correcta");
 			System.out.println("--- entro");
+			
+			
+			//CADA VEZ QUE TE LOGEAS SE GENERARAN 10 NUEVOS PERFILES ALEATORIOS 
+			//PerfilService.addPerfilFalso(10);
 			model.addAttribute("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
 
 			return "bienvenida";
@@ -85,6 +87,7 @@ public class UseController {
 			PerfilService.add(perfil);
 			model.addAttribute("success",
 					"Estimado " + perfil.getNickName() + " , su registro se ha completado de forma correcta");
+			model.addAttribute("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
 			return "bienvenida";
 		} else {
 			model.addAttribute("warning",
