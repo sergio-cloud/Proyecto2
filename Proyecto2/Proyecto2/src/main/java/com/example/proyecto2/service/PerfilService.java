@@ -1,6 +1,7 @@
 package com.example.proyecto2.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -16,8 +17,13 @@ public interface PerfilService {
 	
 	public boolean isPerfil(String nombre, String pass);
 	
-	public List<Perfil> getListaRandom (int id);
+	//public List<Perfil> getListaRandom (int id);
 	
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil);
-
+	
+	public void add(List<Perfil> lista);
+	
+	public void addPerfilFalso();
+	
+	public void addPerfilFalso(int num);
 }
