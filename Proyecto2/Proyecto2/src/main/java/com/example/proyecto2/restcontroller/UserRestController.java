@@ -1,4 +1,4 @@
-package com.example.proyecto.restcontroller;
+package com.example.proyecto2.restcontroller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
