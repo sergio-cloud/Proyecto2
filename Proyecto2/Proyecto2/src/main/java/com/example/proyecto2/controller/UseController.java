@@ -94,10 +94,12 @@ public class UseController {
 		}
 	}
 
-	/*@GetMapping("/like")
+	@GetMapping("/like")
 	public ModelAndView like(ModelMap model,@RequestParam("nickname2") String Nickname2) {
 		System.out.println(Nickname2+"\n\n\n\n\n\n");
+		//LLAMAR A UN SERVICIO QUE  AÑADA a LA TABRA LIKE el LIKE
+		
 		//model.addAttribute("nickname2", Nickname2);
 		return new ModelAndView("redirect:/");
-	}*/
+	}
 }
