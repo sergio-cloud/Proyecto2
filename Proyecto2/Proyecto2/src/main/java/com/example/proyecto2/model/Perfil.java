@@ -39,13 +39,13 @@ public class Perfil implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "idpoblacion")
 	private Poblacion poblacion;
-
 	private String foto;
 	
-	@OneToMany(mappedBy = "perfil1")
+	
+	@OneToMany(mappedBy = "nickname1")
 	private List<Contacto> listaContacto1;
 	
-	@OneToMany(mappedBy = "perfil2")
+	@OneToMany(mappedBy = "nickname2")
 	private List<Contacto> listaContacto2;
 
 	public Perfil() {

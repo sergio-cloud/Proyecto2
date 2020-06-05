@@ -2,6 +2,7 @@ package com.example.proyecto2.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,15 +15,16 @@ public class Contacto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(name = "idcontacto")
 	private int id;
 	
-	//@ManyToOne()
-	@JoinColumn(name= "nickname")
-	private Perfil perfil1;
+    @JoinColumn(name = "nickname1", referencedColumnName = "nickname")
+	@ManyToOne(optional = false)
+	private Perfil nickname1;
 	
-	//@ManyToOne()
-	@JoinColumn(name= "nickname")
-	private Perfil perfil2;
+    @JoinColumn(name = "nickname2", referencedColumnName = "nickname")
+    @ManyToOne
+   	private Perfil nickname2;
 
 	public int getId() {
 		return id;
@@ -32,25 +34,28 @@ public class Contacto implements Serializable{
 		this.id = id;
 	}
 
-	public Perfil getPerfil1() {
-		return perfil1;
+	public Perfil getNickname1() {
+		return nickname1;
 	}
 
-	public void setPerfil1(Perfil perfil1) {
-		this.perfil1 = perfil1;
+	public void setNickname1(Perfil nickname1) {
+		this.nickname1 = nickname1;
 	}
 
-	public Perfil getPerfil2() {
-		return perfil2;
+	public Perfil getNickname2() {
+		return nickname2;
 	}
 
-	public void setPerfil2(Perfil perfil2) {
-		this.perfil2 = perfil2;
+	public void setNickname2(Perfil nickname2) {
+		this.nickname2 = nickname2;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "Contacto [id=" + id + ", perfil1=" + perfil1 + ", perfil2=" + perfil2 + "]";
-	}			
-
+		return "Contacto [id=" + id + ", nickname1=" + nickname1 + ", nickname2=" + nickname2 + "]";
+	}
 }
