@@ -1,13 +1,14 @@
 package com.example.proyecto2.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 //import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,7 +33,6 @@ public class Perfil implements Serializable {
 	private String password;
 	
 	private String genero;
-
 	private int edad;
 
 	private String descripcion;
@@ -41,6 +41,12 @@ public class Perfil implements Serializable {
 	private Poblacion poblacion;
 
 	private String foto;
+	
+	@OneToMany(mappedBy = "perfil1")
+	private List<Contacto> listaContacto1;
+	
+	@OneToMany(mappedBy = "perfil2")
+	private List<Contacto> listaContacto2;
 
 	public Perfil() {
 		super();
