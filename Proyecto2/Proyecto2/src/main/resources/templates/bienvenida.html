@@ -22,12 +22,23 @@
 					<td><span th:text="${perfil.nickName}" /></td>
 					<td><span th:text="${perfil.password}" /></td>
 					
-				<select name="Perfiles" th:field="*{listaDesconocido}"
-						class="form-contol">
-							<option th:each="desconocido : ${listaDesconocido}"
-								th:text="${desconocido.nickName}" th:value="${desconocido.nickName}"></option>
-					</select>
-					
+					<table border="1">
+				<tr>
+					<th>Usuario</th>
+					<th>Genero</th>
+					<th>Edad</th>
+					<th>Poblacion</th>
+					<th>Accion</th>
+				</tr>
+				<tr th:each="desconocido : ${listaDesconocido}">
+					<td th:text="${desconocido.nickName}"  />
+					<td th:text="${desconocido.genero}"  />
+					<td th:text="${desconocido.edad}"  />
+					<td th:text="${desconocido.poblacion.nombrePoblacion}"  />
+					<td><a th:href="@{/like(nickname2=${desconocido.nickName})}">Like | <a>Dislike</a></td>
+				</tr>
+
+			</table>					
 				</tr>					
 			</tbody>
 			<div class="success">
