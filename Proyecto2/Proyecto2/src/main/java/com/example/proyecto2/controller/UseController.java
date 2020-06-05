@@ -1,6 +1,5 @@
 package com.example.proyecto2.controller;
 
-
 //import java.util.ArrayList;
 //import java.util.List;
 
@@ -12,12 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.proyecto2.service.*;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
-
 
 /**
  * @author Sergio
@@ -32,8 +32,8 @@ public class UseController {
 	PoblacionService PoblacionService;
 	@Autowired
 	PerfilService PerfilService;
-	//@Autowired
-	//GeneradorPerfiles Perfilutil;
+	// @Autowired
+	// GeneradorPerfiles Perfilutil;
 
 	@GetMapping("/")
 	public String login(ModelMap model) throws Exception {
@@ -49,27 +49,23 @@ public class UseController {
 			System.out.println("--- Hay algunos errores");
 			return "login";
 		}
-		
-		if (PerfilService.isPerfil(perfil.getNickName(),perfil.getPassword())) {
-			model.addAttribute("perfil",perfil);
-			model.addAttribute("success",
-					"Estimado " + perfil.getNickName() + " , se ha loggeado de forma correcta");
+
+		if (PerfilService.isPerfil(perfil.getNickName(), perfil.getPassword())) {
+			model.addAttribute("perfil", perfil);
+			model.addAttribute("success", "Estimado " + perfil.getNickName() + " , se ha loggeado de forma correcta");
 			System.out.println("--- entro");
 			model.addAttribute("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
-			
+
 			return "bienvenida";
-		}
-		else if(!PerfilService.isPerfil(perfil.getNickName(),perfil.getPassword())) {
-			
-			model.addAttribute("warning",
-				perfil.getNickName() + " No existe en la base de datos."); 
+		} else if (!PerfilService.isPerfil(perfil.getNickName(), perfil.getPassword())) {
+
+			model.addAttribute("warning", perfil.getNickName() + " No existe en la base de datos.");
 			System.out.println("--- entro");
-		
-	}
+
+		}
 		return "login";
 	}
-	
-	
+
 	@GetMapping("/altaPerfil")
 	public String registroPerfil(ModelMap model) throws Exception {
 		model.addAttribute("perfil", new Perfil());
@@ -98,4 +94,10 @@ public class UseController {
 		}
 	}
 
+	/*@GetMapping("/like")
+	public ModelAndView like(ModelMap model,@RequestParam("nickname2") String Nickname2) {
+		System.out.println(Nickname2+"\n\n\n\n\n\n");
+		//model.addAttribute("nickname2", Nickname2);
+		return new ModelAndView("redirect:/");
+	}*/
 }
