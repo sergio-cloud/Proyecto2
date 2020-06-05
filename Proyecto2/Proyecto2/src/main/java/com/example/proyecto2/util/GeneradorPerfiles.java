@@ -18,7 +18,7 @@ import com.github.javafaker.Faker;
 public class GeneradorPerfiles {
 
 	EntityManager em;
-	
+	 
 	public static Perfil Generar() {
 
 		Poblacion poblacion = new Poblacion();
