@@ -3,7 +3,6 @@ package com.example.proyecto2.service;
 import java.util.List;
 import java.util.Optional;
 import com.example.proyecto2.util.GeneradorPerfiles;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.proyecto2.model.Perfil;
@@ -63,7 +62,7 @@ public class PerfilServiceImp implements PerfilService {
 	  }
 */	
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
-		List<Perfil> lista=perfilDAOCustom.listaPerfilDesconocido(perfil);
+		List<Perfil>lista=perfilDAOCustom.listaPerfilDesconocido(perfil);
 		return lista;
 	}
 
@@ -84,5 +83,10 @@ public class PerfilServiceImp implements PerfilService {
 		for (int i = 0; i < num; i++) {
 			perfilDAO.save(GeneradorPerfiles.Generar());
 		}
+	}
+
+	@Override
+	public Perfil findByNickname(String nickname) {		
+		return perfilDAOCustom.findByNick(nickname);
 	}
 }
