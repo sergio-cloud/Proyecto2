@@ -63,7 +63,7 @@ public class PerfilServiceImp implements PerfilService {
 	  }
 */	
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
-		List<Perfil >lista=perfilDAOCustom.listaPerfilDesconocido(perfil);
+		List<Perfil> lista=perfilDAOCustom.listaPerfilDesconocido(perfil);
 		return lista;
 	}
 

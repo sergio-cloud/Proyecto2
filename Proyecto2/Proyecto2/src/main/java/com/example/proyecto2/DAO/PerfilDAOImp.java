@@ -18,7 +18,7 @@ public class PerfilDAOImp {
 
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
 			Query query = entityManager
-					.createNativeQuery("SELECT nickname, edad, genero FROM perfil WHERE perfil.nickname <> ? AND\r\n" + 
+					.createNativeQuery("SELECT * FROM perfil WHERE perfil.nickname <> ? AND\r\n" + 
 							"nickname NOT IN\r\n" + 
 							"                (SELECT nickname2\r\n" + 
 							"                FROM contacto\r\n" + 
