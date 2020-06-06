@@ -30,14 +30,15 @@
 					<th>Poblacion</th>
 					<th>Accion</th>
 				</tr>
+				<form th:action="@{/like}" method="post" th:object="${desconocido}">
 				<tr th:each="desconocido : ${listaDesconocido}">
 					<td th:text="${desconocido.nickName}"  />
 					<td th:text="${desconocido.genero}"  />
 					<td th:text="${desconocido.edad}"  />
 					<td th:text="${desconocido.poblacion.nombrePoblacion}"  />
-					<td><a th:href="@{/like(nickname2=${desconocido.nickName})}">Like | <a>Dislike</a></td>
+                    <td><a th:href="@{/like(nickname2=${desconocido})}">Like</a> | <a>Dislike</a></td>
 				</tr>
-
+               </form>
 			</table>					
 				</tr>					
 			</tbody>
