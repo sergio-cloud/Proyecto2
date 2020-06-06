@@ -17,11 +17,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.proyecto2.service.*;
-<<<<<<< Updated upstream
 import com.example.proyecto2.util.GeneradorPerfiles;
-=======
 import com.example.proyecto2.model.Contacto;
->>>>>>> Stashed changes
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
 
@@ -39,27 +36,22 @@ public class UseController {
 	PoblacionService PoblacionService;
 	@Autowired
 	PerfilService PerfilService;
-<<<<<<< Updated upstream
+	@Autowired
+	ContactoService contactoService;
 
 	@GetMapping("/")
 	public String login(ModelMap model) throws Exception {
 		model.addAttribute("perfil", new Perfil());
-=======
-	// @Autowired
-	// GeneradorPerfiles Perfilutil;
-	@Autowired
-	ContactoService contactoService;
+
 
 	@GetMapping("/")
 	public String login( ModelMap model) throws Exception {
 		System.out.println("--- UseController > login (/)");
 	     model.addAttribute("perfil", new Perfil());
 		// model.addAttribute("poblacion",new Poblacion());
->>>>>>> Stashed changes
 		return "login";
 	}
 	
-    //Cambiarle el nombre de / a /acceso o algo así
 	@PostMapping("/")
 	public String saveLogin(@Valid Perfil perfil, BindingResult result, ModelMap model) {
 		System.out.println("--- UseController > saveLogin (/)");
