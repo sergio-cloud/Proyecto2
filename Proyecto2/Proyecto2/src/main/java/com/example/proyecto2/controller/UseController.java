@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 //import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.proyecto2.service.*;
+<<<<<<< Updated upstream
 import com.example.proyecto2.util.GeneradorPerfiles;
+=======
+import com.example.proyecto2.model.Contacto;
+>>>>>>> Stashed changes
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
 
@@ -27,22 +32,38 @@ import com.example.proyecto2.model.Poblacion;
  */
 
 @Controller
+@SessionAttributes("perfil")
 public class UseController {
 
 	@Autowired
 	PoblacionService PoblacionService;
 	@Autowired
 	PerfilService PerfilService;
+<<<<<<< Updated upstream
 
 	@GetMapping("/")
 	public String login(ModelMap model) throws Exception {
 		model.addAttribute("perfil", new Perfil());
+=======
+	// @Autowired
+	// GeneradorPerfiles Perfilutil;
+	@Autowired
+	ContactoService contactoService;
+
+	@GetMapping("/")
+	public String login( ModelMap model) throws Exception {
+		System.out.println("--- UseController > login (/)");
+	     model.addAttribute("perfil", new Perfil());
+		// model.addAttribute("poblacion",new Poblacion());
+>>>>>>> Stashed changes
 		return "login";
 	}
-
+	
+    //Cambiarle el nombre de / a /acceso o algo así
 	@PostMapping("/")
 	public String saveLogin(@Valid Perfil perfil, BindingResult result, ModelMap model) {
-
+		System.out.println("--- UseController > saveLogin (/)");
+System.out.println("-- Datos del perfil 1"+perfil);
 		if (result.hasErrors()) {
 			System.out.println("--- Hay algunos errores");
 			return "login";
@@ -57,13 +78,11 @@ public class UseController {
 			//CADA VEZ QUE TE LOGEAS SE GENERARAN 10 NUEVOS PERFILES ALEATORIOS 
 			//PerfilService.addPerfilFalso(10);
 			model.addAttribute("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
-
-			return "bienvenida";
+			return "redirect:/bienvenida";
+			
 		} else if (!PerfilService.isPerfil(perfil.getNickName(), perfil.getPassword())) {
-
 			model.addAttribute("warning", perfil.getNickName() + " No existe en la base de datos.");
 			System.out.println("--- entro");
-
 		}
 		return "login";
 	}
@@ -97,12 +116,30 @@ public class UseController {
 		}
 	}
 
-	@GetMapping("/like")
-	public ModelAndView like(ModelMap model,@RequestParam("nickname2") String Nickname2) {
-		System.out.println(Nickname2+"\n\n\n\n\n\n");
-		//LLAMAR A UN SERVICIO QUE  AÑADA a LA TABRA LIKE el LIKE
-		
-		//model.addAttribute("nickname2", Nickname2);
-		return new ModelAndView("redirect:/");
+	@GetMapping("/bienvenida")
+	public String bienvenida(@ModelAttribute Perfil perfil, ModelAndView model) {
+		System.out.println("--- UseController > Bienvenida (get)");
+		model.addObject("ListaPoblacion", PoblacionService.findAll());
+		System.out.println("-- Datos del perfil 2"+perfil);		
+		return "bienvenida";
+}
+	
+	@PostMapping("/bienvenida")
+	public String bienvenida2(@ModelAttribute Perfil perfil, ModelAndView model) {
+		System.out.println("--- UseController > Bienvenida (post)");
+		model.addObject("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil) );
+		//System.out.println("--- ListaPoblacion "+PerfilService.listaPerfilDesconocido(perfil));
+		System.out.println("---------------------------- Datos del perfil 3"+perfil);
+		return "bienvenida";
+	}
+	
+	@GetMapping ("/like")
+	public String like(@ModelAttribute Perfil perfil, @ModelAttribute Perfil perfil2, ModelAndView model) {
+		System.out.println("---------------------------- Datos del perfil 4"+perfil);
+		Contacto contacto=new Contacto();
+		contacto.setNickname1(perfil);
+		contacto.setNickname2(perfil2);
+		contactoService.like(contacto);
+		return "redirect:/bienvenida";
 	}
 }

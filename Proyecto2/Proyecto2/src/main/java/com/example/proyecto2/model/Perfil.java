@@ -33,12 +33,15 @@ public class Perfil implements Serializable {
 	private String password;
 	
 	private String genero;
+	
 	private int edad;
 
 	private String descripcion;
+	
 	@ManyToOne()
 	@JoinColumn(name = "idpoblacion")
 	private Poblacion poblacion;
+	
 	private String foto;
 	
 	
