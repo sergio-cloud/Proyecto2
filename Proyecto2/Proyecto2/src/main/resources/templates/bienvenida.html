@@ -2,13 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><link rel="stylesheet" href="/altaPerfil.css">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+
+<link rel="stylesheet" href="../../static/icons/font/flaticon.css">
+
+
 <title>Bienvenida a LucaTinder</title>
 </head>
-<body
-	style="text-align: center; background-color: #FF9F40; padding-left: 200px">
+<body>
 	<div id="contenedor">
 		<h2>Tu primer paso hacia el amor</h2>
+		
+		<!--
+		
 		<table>
 			<thead>
 				<tr>
@@ -38,7 +45,7 @@
 								<td><a th:href="@{/like(perfil2=${desconocido.nickName})}"><i
 										class="fas fa-heart" style="color: #23B14D; font-size: 50px"></i></a>
 										<i class="far fa-times-circle"></i>
-									| <a>Dislike</a></td>-->
+									| <a>Dislike</a></td>
 					<div th:action="@{/like}" method="post" th:object="${desconocido}">
 						<div class="card" style="width: 18rem;"
 							th:each="desconocido : ${listaDesconocido}">
@@ -59,17 +66,42 @@
 									style="color: #FF0000; font-size: 50px"></i></a>
 							</div>
 						</div>
+                    </div>
 				</tr>
-				</div>
-		</table>
-		</tr>
-		</tbody>
+		</table>  
 		<div class="success">
 			<h3>Mensaje de confirmación</h3>
 			<span th:text="${success}" /> <br />
-		</div>
+		</div> 
+		
+		<div class="card-group">
+          <div class="card border border-danger rounded" th:each="desconocido : ${listaDesconocido}">
+            <img class="card-img-top" src="https://unsplash.it/300/300" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${desconocido.nickName}"></h5><span clas="text-danger" th:text=" ${desconocido.edad}"></span>
+              <p class="card-text"><small class="text-muted" th:text="${desconocido.poblacion.nombrePoblacion}"></small><span th:text="${desconocido.genero}"></span></p>
+              <p class="card-text" th:text="${desconocido.descripcion}"></p>
+            </div>
+          </div>
+        </div> -->
+        
+         <div class="row justify-content-center">
+         <div class="card-group">
+          <div class="card border border-danger rounded" style="max-width:250px" th:each="desconocido : ${listaDesconocido}">
+            <img class="card-img-top p-2" src="https://unsplash.it/175/175" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-title" th:text="${desconocido.nickName}"> <span th:text="${desconocido.poblacion.nombrePoblacion}"></span></p>
+              <p class="card-text"><span class="text-primary" th:text="${desconocido.genero}"> </span><span th:text="${desconocido.edad}"></span></p>
+              <p class="card-text" th:text="${desconocido.descripcion}"></p>
+              <div class="row justify-content-around">
+                <a class="btn btn-outline-success" th:href="@{/like(perfil2=${desconocido.nickName})}" role="button">Like</a>
+                <a class="btn btn-outline-danger" href="" role="button">Dislike</a>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
 
-		</table>
 	</div>
 </body>
 </html>
