@@ -1,6 +1,9 @@
 package com.example.proyecto2.controller;
 
 import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +18,7 @@ import com.example.proyecto2.service.PerfilService;
 import com.example.proyecto2.service.PoblacionService;
 import com.example.proyecto2.service.ContactoService;
 import com.example.proyecto2.util.GeneradorPerfiles;
+
 import com.example.proyecto2.model.Contacto;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
@@ -35,10 +39,12 @@ public class UseController {
 	PerfilService PerfilService;
 	@Autowired
 	ContactoService contactoService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(UseController.class);
 
 	@GetMapping("/")
 	public String login(ModelMap model) throws Exception {
-		System.out.println("--- UseController > login (/)");
+		logger.info("--- UseController > login (/)");
 		model.addAttribute("perfil", new Perfil());
 		// model.addAttribute("poblacion",new Poblacion());
 		return "login";
@@ -46,7 +52,7 @@ public class UseController {
 
 	@PostMapping("/")
 	public String saveLogin(@Valid Perfil perfil, BindingResult result, ModelMap model) {
-		System.out.println("--- UseController > saveLogin (/)");
+		logger.info("--- UseController > saveLogin (/)");
 		System.out.println("-- Datos del perfil 1" + perfil);
 		if (result.hasErrors()) {
 			System.out.println("--- Hay algunos errores");
@@ -72,6 +78,7 @@ public class UseController {
 
 	@GetMapping("/altaPerfil")
 	public String registroPerfil(ModelMap model) throws Exception {
+		logger.info("--- UseController > registroPerfil (/altaPerfil)");
 		model.addAttribute("perfil", new Perfil());
 		model.addAttribute("poblacion", new Poblacion());
 		model.addAttribute("ListaPoblacion", PoblacionService.findAll());
@@ -80,6 +87,7 @@ public class UseController {
 
 	@PostMapping("/altaPerfil")
 	public String saveRegistration(@ModelAttribute @Valid Perfil perfil, BindingResult result, ModelMap model) {
+		logger.info("--- UseController > saveRegistration (/altaPerfil)");
 		model.addAttribute("ListaPoblacion", PoblacionService.findAll());
 		if (result.hasErrors()) {
 			System.out.println("--- Hay algunos errores");
@@ -100,7 +108,7 @@ public class UseController {
 
 	@GetMapping("/bienvenida")
 	public ModelAndView  bienvenida(@ModelAttribute Perfil perfil, ModelAndView model) {
-		System.out.println("--- UseController > Bienvenida (get)");
+		logger.info("--- UseController > Bienvenida (get)");
 		model.addObject("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
 		System.out.println("-- Datos del perfil 2" + perfil);
 		model.setViewName("bienvenida");
@@ -109,7 +117,7 @@ public class UseController {
 
 	@PostMapping("/bienvenida")
 	public ModelAndView bienvenida2(@ModelAttribute Perfil perfil, ModelAndView model) {
-		System.out.println("--- UseController > Bienvenida (post)");
+		logger.info("--- UseController > Bienvenida (post)");
 		model.addObject("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
 		System.out.println("---------------------------- Datos del perfil 3" + perfil);
 		model.setViewName("bienvenida");
@@ -118,6 +126,7 @@ public class UseController {
 
 	@GetMapping("/like")
 	public String like(@ModelAttribute Perfil perfil, @RequestParam("perfil2") String perfil2, ModelAndView model) {
+		logger.info("---UseController > like (/like)");
 		Perfil perfil3=new Perfil();
 		perfil3= PerfilService.findByNickname(perfil2);
 		Contacto contacto = new Contacto();
