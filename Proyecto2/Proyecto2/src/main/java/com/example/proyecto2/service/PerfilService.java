@@ -26,4 +26,6 @@ public interface PerfilService {
 	public void addPerfilFalso();
 	
 	public void addPerfilFalso(int num);
+	
+	public Perfil findByNickname(String nickname);
 }
