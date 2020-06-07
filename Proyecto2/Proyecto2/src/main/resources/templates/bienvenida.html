@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <title>Bienvenida a LucaTinder</title>
 </head>
-<body>
+<body
+	style="text-align: center; background-color: #FF9F40; padding-left: 200px">
 	<div id="contenedor">
-		<h2>
-			Tu primer paso hacia el amor
-		</h2>
+		<h2>Tu primer paso hacia el amor</h2>
 		<table>
 			<thead>
 				<tr>
@@ -18,35 +17,58 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>			
+				<tr>
 					<td><span th:text="${perfil.nickName}" /></td>
 					<td><span th:text="${perfil.password}" /></td>
-					
-					<table border="1">
-				<tr>
-					<th>Usuario</th>
-					<th>Genero</th>
-					<th>Edad</th>
-					<th>Poblacion</th>
-					<th>Accion</th>
+
+					<!-- <table border="1">
+						<tr>
+							<th>Usuario</th>
+							<th>Genero</th>
+							<th>Edad</th>
+							<th>Poblacion</th>
+							<th>Accion</th>
+						</tr>
+
+						 			<tr th:each="desconocido : ${listaDesconocido}">
+								<td th:text="${desconocido.nickName}" />
+								<td th:text="${desconocido.genero}" />
+								<td th:text="${desconocido.edad}" />
+								<td th:text="${desconocido.poblacion.nombrePoblacion}" />
+								<td><a th:href="@{/like(perfil2=${desconocido.nickName})}"><i
+										class="fas fa-heart" style="color: #23B14D; font-size: 50px"></i></a>
+										<i class="far fa-times-circle"></i>
+									| <a>Dislike</a></td>-->
+					<div th:action="@{/like}" method="post" th:object="${desconocido}">
+						<div class="card" style="width: 18rem;"
+							th:each="desconocido : ${listaDesconocido}">
+							<div class="card-image">
+								<img class="img-responsive" src="https://unsplash.it/300/300">
+								<h2 th:text="${desconocido.nickName}"></h2>
+							</div>
+							<div class="card-content">
+								<p th:text="${desconocido.genero}"></p>
+								<p th:text="${desconocido.edad}"></p>
+								<p th:text="${desconocido.poblacion.nombrePoblacion}"></p>
+							</div>
+							<div class="card-action">
+								<a th:href="@{/like(perfil2=${desconocido.nickName})}"><i
+									class="fas fa-heart" style="color: #23B14D; font-size: 50px"></i></a>
+								<a href="@{/dislike(perfil2=${desconocido.nickName})}"><i
+									class="far fa-times-circle"
+									style="color: #FF0000; font-size: 50px"></i></a>
+							</div>
+						</div>
 				</tr>
-				<form th:action="@{/like}" method="post" th:object="${desconocido}">
-				<tr th:each="desconocido : ${listaDesconocido}">
-					<td th:text="${desconocido.nickName}"  />
-					<td th:text="${desconocido.genero}"  />
-					<td th:text="${desconocido.edad}"  />
-					<td th:text="${desconocido.poblacion.nombrePoblacion}"  />
-                    <td><a th:href="@{/like(perfil2=${desconocido.nickName})}">Like</a> | <a>Dislike</a></td>
-				</tr>
-               </form>
-			</table>					
-				</tr>					
-			</tbody>
-			<div class="success">
+				</div>
+		</table>
+		</tr>
+		</tbody>
+		<div class="success">
 			<h3>Mensaje de confirmación</h3>
 			<span th:text="${success}" /> <br />
 		</div>
-		
+
 		</table>
 	</div>
 </body>
