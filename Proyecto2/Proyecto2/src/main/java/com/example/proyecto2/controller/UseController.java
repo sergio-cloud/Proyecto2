@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.proyecto2.service.PerfilService;
 import com.example.proyecto2.service.PoblacionService;
 import com.example.proyecto2.service.ContactoService;
+import com.example.proyecto2.service.DescarteService;
 import com.example.proyecto2.util.GeneradorPerfiles;
 
 import com.example.proyecto2.model.Contacto;
@@ -140,11 +141,13 @@ public class UseController {
 	}
 	
 	@GetMapping ("/dislike")
-	public String dislike(@ModelAttribute Perfil perfil, @ModelAttribute Perfil perfil2, ModelAndView model) {
+	public String dislike(@ModelAttribute Perfil perfil, @RequestParam("perfil2") String perfil2, ModelAndView model) {
 		System.out.println("---------------------------- Datos del perfil 5"+perfil);
+		Perfil perfil3=new Perfil();
+		perfil3= PerfilService.findByNickname(perfil2);
 		Descarte descarte=new Descarte();
 		descarte.setNickname1(perfil);
-		descarte.setNickname2(perfil2);
+		descarte.setNickname2(perfil3);
 		descarteService.dislike(descarte);
 		return "redirect:/bienvenida";
 	}
