@@ -89,4 +89,8 @@ public class PerfilServiceImp implements PerfilService {
 	public Perfil findByNickname(String nickname) {		
 		return perfilDAOCustom.findByNick(nickname);
 	}
+	
+	public void delete(String nickname) {
+		perfilDAO.delete(perfilDAOCustom.findByNick(nickname));
+	}
 }

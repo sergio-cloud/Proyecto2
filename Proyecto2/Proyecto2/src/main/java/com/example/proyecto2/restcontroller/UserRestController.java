@@ -1,15 +1,21 @@
 package com.example.proyecto2.restcontroller;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
 
 import com.example.proyecto2.model.Contacto;
 import com.example.proyecto2.model.Perfil;
@@ -85,5 +91,26 @@ public class UserRestController {
 		logger.info("---Obteniendo contacto por Id---");
 		return ContactoService.findById(idContacto);
 	}
+	
+	//DEVUELVE UN PERFIL REGISTRADO POR SU NICKNAME NINO
+	@GetMapping(value = "/perfil/{nickname}")
+	
+	public Optional<Perfil> getPerfilByNicknamePerfil(@PathVariable String nickname) {
+		logger.info("---Obteniendo Perfil por nickname---");
+		return Optional.ofNullable(PerfilService.findByNickname(nickname));
+	}
+	
+	//AGREGA UN NUEVO PERFIL--REST NINO
+	@PostMapping(value = "/addPerfil")
+	
+	public ResponseEntity<?> newPerfil(@RequestBody Perfil perfil) {
+		logger.info("---Creando un nuevo Perfil en REST---");
+		PerfilService.add(perfil);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{nickname}").buildAndExpand(perfil.getNickName())
+				.toUri();
+		return ResponseEntity.created(location).build();
+	}
+	
+	
 	
 }
