@@ -12,7 +12,7 @@
 
 		<div style="text-align: center">
 			<legend>Introduce tus datos:</legend>
-			<form th:action="@{/bienvenida}" method="post" th:object="${perfil}">
+			<form th:action="@{/}" method="post" th:object="${perfil}">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Apodo"
 						th:field="*{nickName}" />

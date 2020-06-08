@@ -3,66 +3,85 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/altaPerfil.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><link rel="stylesheet" href="/altaPerfil.css">
 <title>altaPerfil</title>
 </head>
 
-<body>
-	<div id="contenedor">
-		<h2>
-			Formulario 1<br />REGISTRO
-		</h2>
-		<form method="post" th:object="${perfil}" th:action="@{/altaPerfil}">
-			<table border="1">
-				<tr>
-					<th><label for="nickName">Nickname</label>NickName (*)</th>
-					<td><input type="text" th:field="*{nickName}" />
-
-						<div th:if="${#fields.hasErrors('nickName')}"
-							th:errors="*{nickName}" class="has-error help-inline">nickName
-							Error</div></td>
-
-				</tr>
-				<tr>
-					<th><label for="password">Contraseña</label>Password (*)</th>
-					<td><input type="password" th:field="*{password}" />
-
-						<div th:if="${#fields.hasErrors('password')}"
-							th:errors="*{password}" class="has-error help-inline">password
-							Error</div></td>
-				</tr>
-				<tr>
-					<th><label for="edad">Edad</label></th>
-					<td><input type="number" class="form-control" id="edad"
-						placeholder="18" min="18" th:field="*{edad}" /></td>
-				</tr>
-				<tr>
-					<th><label for="poblacion">Poblacion</label></th>
-					<td><select name="Población" th:field="*{poblacion}"
-						class="form-contol">
-							<option th:each="poblacion : ${ListaPoblacion}"
-								th:value="${poblacion.idPoblacion}"
-								th:text="${poblacion.nombrePoblacion}"></option>
-					</select>
-				</tr>
-				<tr>
-					<th><label for="genero">Genero</label></th>
-					<td><input type="radio" id="male" name="genero" value="hombre" checked>
-						<label for="male">Hombre</label><br> <input type="radio"
-						id="female" name="genero" value="mujer"> <label for="female">Mujer</label><br>
-
-					</td>
-					
-				</tr>
+<body> 
+				<!-- FORMULARIO SERGIO   -->
 				
-			</table>
-			<input type="submit" value="Dar de alta" />
-			
-			<div class="warning">
-					<h3>Mensaje de confirmación</h3>
-					<span th:text="${warning}" /> <br />
-				</div>
-		</form>
+	<h2 class="text-center">Bienvenidos a <span class="text-primary">Luca</span><span class="text-danger">Tinder</span></h2>
+	<br>
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="border border-danger rounded p-3">
+				<form method="post" th:object="${perfil}" th:action="@{/altaPerfil}">
+				  <div class="form-row">
+				    <div class="form-group col-md-6">
+				      <label>NickName (*)</label>
+				      <input type="text" class="form-control" placeholder="Pepe97" th:field="*{nickName}" required>
+				      <div th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}" class="has-error help-inline text-danger">
+				        nickName Error
+                      </div>
+				    </div>
+				    <div class="form-group col-md-6">
+				      <label>Password (*)</label>
+				      <input type="password" class="form-control" placeholder="Password" th:field="*{password}" required>
+				      <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="has-error help-inline text-danger">
+				          passwordError
+				      </div>
+				    </div>
+				  </div>
+				  
+				  <div class="form-row">
+				    <div class="form-group col-md-6">
+				      <label>Edad (*)</label>
+				      <input type="number" class="form-control" placeholder="23" min="18" th:field="*{edad}" required>
+				    </div>
+				    <div class="form-group col-md-6">
+				      <label>Poblacion (*)</label>
+					  <select class="form-control" th:field="*{poblacion}">
+				        <option th:each="poblacion : ${ListaPoblacion}"
+								th:value="${poblacion.idPoblacion}"
+								th:text="${poblacion.nombrePoblacion}">
+                        </option>
+                      </select>
+				    </div>
+				  </div>
+				  
+				  <div class="form-row">
+				    <div class="form-group col-md-6">
+				      <label>Genero (*)</label>
+				      <div>
+				      	<div class="form-check">
+						  <input class="form-check-input" type="radio" value="Hombre" name="genero" required>
+						  <label class="form-check-label">Hombre</label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" value="Mujer" name="genero">
+						  <label class="form-check-label">Mujer</label>
+						</div>
+				      </div>
+				    </div>
+				    <div class="form-group col-md-6">
+				      <label>Breve descripcion</label>
+					  <textarea class="form-control" th:field="*{descripcion}"></textarea>
+				    </div>
+				  </div>
+				  
+				  <!-- BOTONES -->
+				  <div class="row justify-content-md-center">
+						<div>
+							<input class="btn btn-outline-primary" type="submit" value="Alta">
+				    		<input class="btn btn-outline-danger" type="reset" value="Borrar">
+						</div>
+				 </div>
+			  	</form>
+			  	
+			  	 <p class="text-center text-danger font-weight-bold" th:text="${warning}"/>
+			  	
+			</div>			
+		</div>
 	</div>
 </body>
 

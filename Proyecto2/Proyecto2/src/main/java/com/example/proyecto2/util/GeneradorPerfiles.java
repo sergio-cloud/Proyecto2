@@ -16,9 +16,9 @@ public class GeneradorPerfiles {
 		Poblacion poblacion = new Poblacion();
 		Faker faker = new Faker();
 		Perfil aux = new Perfil();
-		aux.setNickName(faker.name().fullName() + faker.number().numberBetween(15, 99));
+		aux.setNickName(faker.name().firstName() + faker.number().numberBetween(15, 99));
 		aux.setEdad(faker.number().numberBetween(18, 60));
-		if (faker.number().numberBetween(0, 1) == 0) {
+		if (faker.number().numberBetween(0, 100) % 2==0) {
 			aux.setGenero("Hombre");
 		} else
 			aux.setGenero("Mujer");
