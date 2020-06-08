@@ -27,6 +27,22 @@
 				<tr>
 					<td><span th:text="${perfil.nickName}" /></td>
 					<td><span th:text="${perfil.password}" /></td>
+					
+					<table border="1">
+				<tr>
+					<th>Usuario</th>
+					<th>Genero</th>
+					<th>Edad</th>
+					<th>Poblacion</th>
+					<th>Accion</th>
+				</tr>
+				<form th:action="@{/like}" method="post" th:object="${desconocido}">
+				<tr th:each="desconocido : ${listaDesconocido}">
+					<td th:text="${desconocido.nickName}"  />
+					<td th:text="${desconocido.genero}"  />
+					<td th:text="${desconocido.edad}"  />
+					<td th:text="${desconocido.poblacion.nombrePoblacion}"  />
+                    <td><a th:href="@{/like(nickname2=${desconocido})}">Like</a> | <a th:href="@{/dislike(nickname2=${desconocido})}">Dislike</a></td>
 
 					<!-- <table border="1">
 						<tr>
