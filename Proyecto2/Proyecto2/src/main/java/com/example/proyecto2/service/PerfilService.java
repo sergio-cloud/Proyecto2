@@ -17,8 +17,6 @@ public interface PerfilService {
 	
 	public boolean isPerfil(String nombre, String pass);
 	
-	//public List<Perfil> getListaRandom (int id);
-	
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil);
 	
 	public void add(List<Perfil> lista);
@@ -28,4 +26,6 @@ public interface PerfilService {
 	public void addPerfilFalso(int num);
 	
 	public Perfil findByNickname(String nickname);
+	
+	public void delete(String nickname);
 }

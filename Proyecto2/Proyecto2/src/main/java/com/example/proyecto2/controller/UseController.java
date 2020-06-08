@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.proyecto2.service.PerfilService;
 import com.example.proyecto2.service.PoblacionService;
 import com.example.proyecto2.service.ContactoService;
+import com.example.proyecto2.service.DescarteService;
 import com.example.proyecto2.util.GeneradorPerfiles;
 
 import com.example.proyecto2.model.Contacto;
