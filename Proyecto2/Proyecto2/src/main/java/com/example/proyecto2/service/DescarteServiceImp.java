@@ -7,7 +7,7 @@ import com.example.proyecto2.DAO.DescarteDAO;
 import com.example.proyecto2.model.Descarte;
 
 @Service
-public class DescarteServiceImp implements DescarteService{
+public class DescarteServiceImp implements DescarteService {
 	
 	@Autowired
 	private DescarteDAO descarteDAO;
