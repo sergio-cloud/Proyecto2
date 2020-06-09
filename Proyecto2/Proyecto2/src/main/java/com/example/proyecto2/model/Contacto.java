@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+/**
+ * @author MIGUEL
+ * @version 05/06/2020
+ */
 
 @Entity
 public class Contacto implements Serializable{

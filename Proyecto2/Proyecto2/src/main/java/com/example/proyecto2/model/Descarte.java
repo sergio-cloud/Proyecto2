@@ -1,12 +1,16 @@
 package com.example.proyecto2.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+/**
+ * @author MIGUEL
+ * @version 08/06/2020
+ */
 
 @Entity
 public class Descarte implements Serializable {
