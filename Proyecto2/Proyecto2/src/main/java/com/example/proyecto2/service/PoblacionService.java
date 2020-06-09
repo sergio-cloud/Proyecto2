@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.proyecto2.model.Poblacion;
 
+/**
+ * @author Sergio
+ * @version 05/06/2020
+ *
+ */
 @Service
 public interface PoblacionService {
 	
