@@ -28,7 +28,7 @@ import com.example.proyecto2.service.PerfilService;
 import com.example.proyecto2.service.PoblacionService;
 import com.example.proyecto2.service.ContactoService;
 @RestController
-public class UserRestController<PerfilNotFoundException> {
+public class UserRestController {
 	@Autowired
 	PoblacionService PoblacionService;
 	
