@@ -1,12 +1,16 @@
 package com.example.proyecto2.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
 import com.example.proyecto2.model.Perfil;
 
+/**
+ * @author Sergio
+ * @author Alvaro
+ * @author Nino
+ * @author Miguel
+ * @version 04/06/2020
+ *
+ */
 public interface PerfilService {
 
 	public List<Perfil> findAll();
