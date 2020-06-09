@@ -2,25 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><link rel="stylesheet" href="/altaPerfil.css">
-<title>altaPerfil</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/altaPerfil.css">
+    <title>altaPerfil</title>
 </head>
 
-<body> 
-				<!-- FORMULARIO SERGIO   -->
-				
-	<h2 class="text-center">Bienvenidos a <span class="text-primary">Luca</span><span class="text-danger">Tinder</span></h2>
-	<br>
-	<div class="container">
-		<div class="row justify-content-md-center">
-			<div class="border border-danger rounded p-3">
-				<form method="post" th:object="${perfil}" th:action="@{/altaPerfil}">
-				  <div class="form-row">
-				    <div class="form-group col-md-6">
-				      <label>NickName (*)</label>
-				      <input type="text" class="form-control" placeholder="Pepe97" th:field="*{nickName}" required>
-				      <div th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}" class="has-error help-inline text-danger">
+<body>
+
+    <h2 class="text-center">Bienvenidos a <span class="text-primary">Luca</span><span class="text-danger">Tinder</span></h2>
+    <br>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="border border-danger rounded p-3">
+                <form method="post" th:object="${perfil}" th:action="@{/altaPerfil}">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>NickName (*)</label>
+                            <input type="text" class="form-control" placeholder="Pepe97" th:field="*{nickName}" required>
+                            <div th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}" class="has-error help-inline text-danger">
 				        nickName Error
                       </div>
 				    </div>
