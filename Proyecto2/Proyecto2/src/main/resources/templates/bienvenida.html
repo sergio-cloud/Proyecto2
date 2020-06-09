@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><link rel="stylesheet" href="/altaPerfil.css">
-<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
-<link rel="stylesheet" href="../static/icons/font/flaticon.css">
 
-<title>Bienvenida a LucaTinder</title>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/altaPerfil.css">
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+    <link rel="stylesheet" href="../static/icons/font/flaticon.css">
+
+    <title>Bienvenida a LucaTinder</title>
 </head>
+
 <body>
-	<div id="contenedor">
-		<h2>Tu primer paso hacia el amor</h2>
-         <div class="row justify-content-center">
-         <div class="card-group">
-          <div class="card border border-danger rounded" style="max-width:250px" th:each="desconocido : ${listaDesconocido}">
-            <img th:if="${desconocido.genero=='Hombre'}" class="card-img-top p-2" src="https://loremflickr.com/300/300/boy" alt="Card image cap">
-            <img th:if="${desconocido.genero=='Mujer'}" class="card-img-top p-2" src="https://loremflickr.com/300/300/girl" alt="Card image cap">
-            <div class="card-body">
-                <div class="card-title">
-                <span class="h5" th:text="${desconocido.nickName}"></span>
-                 <span class="h5 text-muted" th:text="${desconocido.poblacion.nombrePoblacion}"></span>                       
-                 </div>
-              <p class="card-text"><span class="text-primary" th:text="${desconocido.genero}"> </span><span th:text="${desconocido.edad}"></span></p>
-              <p class="card-text" th:text="${desconocido.descripcion}"></p>
-              <div class="row justify-content-around">
-                <a class="btn btn-outline-success" th:href="@{/like(perfil2=${desconocido.nickName})}" role="button"><i
-									class="fas fa-heart" style="color: #23D16D; font-size: 50px"></i></a>
-                <a class="btn btn-outline-danger" th:href="@{/dislike(perfil2=${desconocido.nickName})}" role="button"><i
-									class="far fa-times-circle"
-									style="color: #FFA0A0; font-size: 50px"></i></a>
-              </div>
+    <div id="contenedor">
+        <h2>Tu primer paso hacia el amor</h2>
+        <div class="row justify-content-center">
+            <div class="card-group">
+                <div class="card border border-danger rounded" style="max-width:250px" th:each="desconocido : ${listaDesconocido}">
+                    <img th:if="${desconocido.genero=='Hombre'}" class="card-img-top p-2" src="https://loremflickr.com/300/300/boy" alt="Card image cap">
+                    <img th:if="${desconocido.genero=='Mujer'}" class="card-img-top p-2" src="https://loremflickr.com/300/300/girl" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span class="h5" th:text="${desconocido.nickName}"></span>
+                            <span class="h5 text-muted" th:text="${desconocido.poblacion.nombrePoblacion}"></span>
+                        </div>
+                        <p class="card-text"><span class="text-primary" th:text="${desconocido.genero}"> </span><span th:text="${desconocido.edad}"></span></p>
+                        <p class="card-text" th:text="${desconocido.descripcion}"></p>
+                        <div class="row justify-content-around">
+                            <a class="btn btn-outline-success" th:href="@{/like(perfil2=${desconocido.nickName})}" role="button"><i class="fas fa-heart" style="color: #23D16D; font-size: 50px"></i></a>
+                            <a class="btn btn-outline-danger" th:href="@{/dislike(perfil2=${desconocido.nickName})}" role="button"><i class="far fa-times-circle" style="color: #FFA0A0; font-size: 50px"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-       </div>
-	</div>
+    </div>
 </body>
+
 </html>
