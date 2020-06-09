@@ -18,17 +18,17 @@ class DemoApplicationTests {
 	@Autowired
 	PerfilService PerfilService;
 	
-	/*@Test
+	@Test
 	void contextLoads() throws Exception{
 		List<Perfil> aux=PerfilService.findAll();
 		PerfilService.addPerfilFalso();
 		assertThat(aux.size()+1==PerfilService.findAll().size()).isTrue();
-	}*/
+	}
 
-	@Test
+	/*@Test
 	void eliminar() throws Exception{
 		List<Perfil> aux=PerfilService.findAll();
 		PerfilService.delete("Laverne Bednar37");
 		assertThat(aux.size()==PerfilService.findAll().size()+1).isTrue();
-	}
+	}*/
 }
