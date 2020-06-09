@@ -1,17 +1,23 @@
 package com.example.proyecto2.util;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.example.proyecto2.controller.UseController;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
-import com.example.proyecto2.service.PerfilService;
-//import com.example.proyecto2.service.PoblacionService;
 import com.github.javafaker.Faker;
+
+
+/**
+ * @author ALVARO
+ * @version 05/06/2020
+ */
 public class GeneradorPerfiles {
 	EntityManager em;
+	private static final Logger logger = LoggerFactory.getLogger(UseController.class);
 	 
+	//METODO QUE GENERA UN PERFIL CON TODOS LOS ATRIBUTOS ALEATORIOS Y LO DEVUELVE
+	
 	public static Perfil Generar() {
 		Poblacion poblacion = new Poblacion();
 		Faker faker = new Faker();
@@ -26,15 +32,8 @@ public class GeneradorPerfiles {
 		poblacion.setIdPoblacion(faker.number().numberBetween(4, 54));
 		poblacion.setNombrePoblacion("Madrid");
 		aux.setPoblacion(poblacion);
-		System.out.println("\n"+aux.toString());
+		logger.info(aux.toString());
 		return aux;
 	}
-/*
-	public static List<Perfil> generarLista(int cantidad) {
-		List<Perfil> listPerfil = new ArrayList<Perfil>();
-		for (int i = 0; i < cantidad; i++) {
-			listPerfil.add(Generar());
-		}
-		return listPerfil;
-	}*/
+
 }

@@ -2,21 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
-<title>Login Perfil</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/altaPerfil.css">
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+    <title>Login Perfil</title>
 </head>
 
 <body>
-	<fieldset>
-
-		<div style="text-align: center">
-			<legend>Introduce tus datos:</legend>
-			<form th:action="@{/}" method="post" th:object="${perfil}">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Apodo"
-						th:field="*{nickName}" />
-					<div th:if="${#fields.hasErrors('nickName')}"
+    <fieldset>
+        <legend>Introduce tus datos:</legend>
+        <div style="text-align: center">
+            <form th:action="@{/}" method="post" th:object="${perfil}">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Apodo" th:field="*{nickName}" />
+                    <div th:if="${#fields.hasErrors('nickName')}"
 						th:errors="*{nickName}" class="has-error help-inline">nickName
 						Error</div>
 				</div>
