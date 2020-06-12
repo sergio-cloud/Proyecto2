@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import com.example.proyecto2.service.ContactoService;
  */
 
 //REST CONTROLLER DEVUELVE OBJETOS EN FORMATO JSON
+@CrossOrigin(origins = "*", maxAge = 5600)
 @RestController
 @SessionAttributes("perfil")
 public class UserRestController {
