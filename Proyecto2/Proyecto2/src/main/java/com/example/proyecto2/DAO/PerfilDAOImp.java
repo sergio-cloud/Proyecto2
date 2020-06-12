@@ -34,6 +34,16 @@ public class PerfilDAOImp {
 		query.setParameter(3, perfil.getNickName());
 		return query.getResultList();
 	}
+	
+	public List<Perfil> listaPerfilContacto(Perfil perfil) {
+		Query query = entityManager.createNativeQuery("select * from perfil\r\n"  
+				+"  where nickname in (select nickname2 from contacto\r\n" 
+				+"                 where nickname2<>?\r\n" 
+				+"                 AND nickname1=?);", Perfil.class);
+		query.setParameter(1, perfil.getNickName());
+		query.setParameter(2, perfil.getNickName());
+		return query.getResultList();
+	}
 
 	// USAMOS ESTA QUERY PARA BUSCAR UN PERFIL BASADO EN SU NICKNAME
 

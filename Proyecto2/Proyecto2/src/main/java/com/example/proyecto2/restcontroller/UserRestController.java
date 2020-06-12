@@ -9,12 +9,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.proyecto2.model.Contacto;
@@ -31,6 +34,7 @@ import com.example.proyecto2.service.ContactoService;
 
 //REST CONTROLLER DEVUELVE OBJETOS EN FORMATO JSON
 @RestController
+@SessionAttributes("perfil")
 public class UserRestController {
 	@Autowired
 	PoblacionService PoblacionService;
@@ -70,7 +74,7 @@ public class UserRestController {
 		return PerfilService.findAll();
 	}
 
-	// DEVUELVE LISTA DE TODOS LOS CONTACTOS A LOS CUALES LES DIO LIKE EL USER
+	// DEVUELVE LISTA DE TODOS LOS CONTACTOS
 	// LOGEADO NINO
 	@RequestMapping(value = "/contacto/listado", method = RequestMethod.GET)
 
@@ -85,6 +89,20 @@ public class UserRestController {
 	public Optional<Contacto> getContactoByIdContacto(@PathVariable int idContacto) {
 		logger.info("---Obteniendo contacto por Id---");
 		return ContactoService.findById(idContacto);
+	}
+	
+	//DEVUELVE UNA LISTA DE CONTACTOS POR USUARIO
+	@RequestMapping(value = "/contacto/listacontacto", method = RequestMethod.GET, headers = {
+	"Accept=application/json" }, produces = "application/json; charset=utf-8")
+	public List<Perfil> getListaContacto(@RequestBody Perfil perfil){
+		logger.info("---Obteniendo lista de personas que han recibido like del perfil entrante---");
+		return PerfilService.listaPerfilContacto(perfil);
+	}
+	
+	@GetMapping(value = "/perfil/listadesconocido")
+	public List<Perfil> getListaDesconocido(@RequestBody Perfil perfil){
+		logger.info("----Obteniendo lista de personas desconocidas por perfil entrante---");
+		return PerfilService.listaPerfilDesconocido(perfil);
 	}
 
 	// DEVUELVE UN PERFIL REGISTRADO POR SU NICKNAME NINO
