@@ -23,7 +23,7 @@ public class PerfilServiceImp implements PerfilService {
 	private PerfilDAO perfilDAO;
 	
 	@Autowired
-	private PerfilDAOImp perfilDAOCustom;
+	private PerfilDAOImp perfilDAOImp;
 
 	//MÉTODO QUE PERMITE OBTENER TODOS LOS PERFILES DE LA BASE DE DATOS
 	@Override
@@ -63,8 +63,13 @@ public class PerfilServiceImp implements PerfilService {
 
 	//MÉTODO QUE PERMITE OBTENER LOS PERFILES QUE AUN NO HAN RECIBIDO LIKE O DISLIKE DEL PERFIL QUE ESTA UTILIZANDO LA APLICACIÓN
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
-		List<Perfil>lista=perfilDAOCustom.listaPerfilDesconocido(perfil);
+		List<Perfil>lista=perfilDAOImp.listaPerfilDesconocido(perfil);
 		return lista;
+	}
+	
+	public List<Perfil> listaPerfilContacto(Perfil perfil) {
+			List<Perfil>lista=perfilDAOImp.listaPerfilContacto(perfil);
+			return lista;
 	}
 
 	//MÉTODO QUE PERMITE AÑADIR UN PERFIL FALSO A LA BASE DE DATOS GENERADO POR EL MÉTODO "Generar"
@@ -83,12 +88,12 @@ public class PerfilServiceImp implements PerfilService {
 	//MÉTODO QUE LLAMA AL MÉTODO "findByNick" DE LA CAPA DAO Y DEVUELVE TODOS LOS DATOS DE SU PERFIL
 	@Override
 	public Perfil findByNickname(String nickname) {		
-		return perfilDAOCustom.findByNick(nickname);
+		return perfilDAOImp.findByNick(nickname);
 	}
 	
 	//MÉTODO QUE LLAMA AL MÉTODO "findByNick" DE LA CAPA DAO Y BORRA EL PERFIL CON EL NICKNAME SELECCIONADO
 	public void delete(String nickname) {
-		perfilDAO.delete(perfilDAOCustom.findByNick(nickname));
+		perfilDAO.delete(perfilDAOImp.findByNick(nickname));
 	}
 
 	@Override
