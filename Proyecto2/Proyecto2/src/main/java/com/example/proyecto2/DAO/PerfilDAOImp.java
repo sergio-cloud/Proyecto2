@@ -28,7 +28,7 @@ public class PerfilDAOImp {
 				+ "nickname NOT IN\r\n" + "                (SELECT nickname2\r\n" + "                FROM contacto\r\n"
 				+ "                WHERE nickname1 = ?)\r\n" + "AND\r\n" + "nickname NOT IN\r\n"
 				+ "                (SELECT nickname2\r\n" + "                FROM descarte\r\n"
-				+ "                WHERE nickname1 = ?) LIMIT 10;", Perfil.class);
+				+ "                WHERE nickname1 = ?) LIMIT 1;", Perfil.class);
 		query.setParameter(1, perfil.getNickName());
 		query.setParameter(2, perfil.getNickName());
 		query.setParameter(3, perfil.getNickName());
