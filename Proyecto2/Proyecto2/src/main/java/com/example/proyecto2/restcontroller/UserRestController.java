@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+<<<<<<< Updated upstream
+=======
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+>>>>>>> Stashed changes
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.proyecto2.model.Contacto;
@@ -104,6 +109,12 @@ public class UserRestController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{nickname}")
 				.buildAndExpand(perfil.getNickName()).toUri();
 		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping("/like")
+	public void like(@RequestBody Contacto contacto) {
+		logger.info("---UseController > like (/like)");
+		ContactoService.like(contacto);
 	}
 
 	/*
