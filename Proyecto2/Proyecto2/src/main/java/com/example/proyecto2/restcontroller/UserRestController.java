@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.proyecto2.model.Contacto;
@@ -36,7 +35,6 @@ import com.example.proyecto2.service.ContactoService;
 //REST CONTROLLER DEVUELVE OBJETOS EN FORMATO JSON
 @CrossOrigin(origins = "*", maxAge = 5600)
 @RestController
-@SessionAttributes("perfil")
 public class UserRestController {
 	@Autowired
 	PoblacionService PoblacionService;
@@ -127,6 +125,12 @@ public class UserRestController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{nickname}")
 				.buildAndExpand(perfil.getNickName()).toUri();
 		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping("/like")
+	public void like(@RequestBody Contacto contacto) {
+		logger.info("---UseController > like (/like)");
+		ContactoService.like(contacto);
 	}
 
 	/*
