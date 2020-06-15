@@ -94,22 +94,26 @@ public class UserRestController {
 	}
 	
 	//DEVUELVE UNA LISTA DE CONTACTOS POR USUARIO
-	@RequestMapping(value = "/contacto/listacontacto", method = RequestMethod.GET, headers = {
+	@RequestMapping(value = "/contacto/listacontacto/{nickName}", method = RequestMethod.GET, headers = {
 	"Accept=application/json" }, produces = "application/json; charset=utf-8")
-	public List<Perfil> getListaContacto(@RequestBody Perfil perfil){
+	public List<Perfil> getListaContacto(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p.setNickName(nickName);
 		logger.info("---Obteniendo lista de personas que han recibido like del perfil entrante---");
-		return PerfilService.listaPerfilContacto(perfil);
+		return PerfilService.listaPerfilContacto(p);
 	}
 	
-	@GetMapping(value = "/perfil/listadesconocido")
-	public List<Perfil> getListaDesconocido(@RequestBody Perfil perfil){
+	//DEVUELVE PERFILES DESCONOCIDOS RESPECTO AL PERFIL LOGEADO
+	@GetMapping(value = "/perfil/listadesconocido/{nickName}")
+	public List<Perfil> getListaDesconocido(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p.setNickName(nickName);
 		logger.info("----Obteniendo lista de personas desconocidas por perfil entrante---");
-		return PerfilService.listaPerfilDesconocido(perfil);
+		return PerfilService.listaPerfilDesconocido(p);
 	}
 
 	// DEVUELVE UN PERFIL REGISTRADO POR SU NICKNAME NINO
 	@GetMapping(value = "/perfil/{nickname}")
-
 	public Optional<Perfil> getPerfilByNicknamePerfil(@PathVariable String nickname) {
 		logger.info("---Obteniendo Perfil por nickname---");
 		return Optional.ofNullable(PerfilService.findByNickname(nickname));
@@ -117,7 +121,6 @@ public class UserRestController {
 
 	// AGREGA UN NUEVO PERFIL--REST NINO
 	@PostMapping(value = "/addPerfil")
-
 	public ResponseEntity<?> newPerfil(@RequestBody Perfil perfil) {
 		logger.info("---Creando un nuevo Perfil en REST---");
 		PerfilService.add(perfil);
