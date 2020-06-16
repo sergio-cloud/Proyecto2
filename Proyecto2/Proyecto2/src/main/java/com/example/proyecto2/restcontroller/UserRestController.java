@@ -31,7 +31,7 @@ import com.example.proyecto2.service.ContactoService;
 
 //REST CONTROLLER DEVUELVE OBJETOS EN FORMATO JSON
 @RestController
-public class UserRestController<PerfilNotFoundException> {
+public class UserRestController {
 	@Autowired
 	PoblacionService PoblacionService;
 
