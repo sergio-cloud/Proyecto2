@@ -4,6 +4,8 @@ import java.util.List;
 import com.example.proyecto2.util.GeneradorPerfiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.proyecto2.model.Contacto;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.DAO.PerfilDAO;
 import com.example.proyecto2.DAO.PerfilDAOImp;
@@ -21,23 +23,23 @@ public class PerfilServiceImp implements PerfilService {
 
 	@Autowired
 	private PerfilDAO perfilDAO;
-	
+
 	@Autowired
 	private PerfilDAOImp perfilDAOImp;
 
-	//MÉTODO QUE PERMITE OBTENER TODOS LOS PERFILES DE LA BASE DE DATOS
+	// MÉTODO QUE PERMITE OBTENER TODOS LOS PERFILES DE LA BASE DE DATOS
 	@Override
 	public List<Perfil> findAll() {
 		return perfilDAO.findAll();
 	}
-	
-	//MÉTODO QUE PERMITE GUARDAR UN PERFIL EN LA BASE DE DATOS
+
+	// MÉTODO QUE PERMITE GUARDAR UN PERFIL EN LA BASE DE DATOS
 	@Override
 	public void add(Perfil perfil) {
 		perfilDAO.save(perfil);
 	}
 
-	//MÉTODO QUE PERMITE SABER SI UN NICKNAME EXISTE EN LA BASE DE DATOS
+	// MÉTODO QUE PERMITE SABER SI UN NICKNAME EXISTE EN LA BASE DE DATOS
 	public boolean existe(String nombre) {
 		List<Perfil> comprobar = perfilDAO.findAll();
 		for (int i = 0; i < comprobar.size(); i++) {
@@ -48,7 +50,7 @@ public class PerfilServiceImp implements PerfilService {
 		return false;
 	}
 
-	//MÉTODO QUE PERMITE SABER SI UN NICKNAME Y UNA PASWORD PERTENCEN A UN PERFIL
+	// MÉTODO QUE PERMITE SABER SI UN NICKNAME Y UNA PASWORD PERTENCEN A UN PERFIL
 	public boolean isPerfil(String nombre, String pass) {
 		List<Perfil> comprobar = perfilDAO.findAll();
 		for (int i = 0; i < comprobar.size(); i++) {
@@ -61,37 +63,42 @@ public class PerfilServiceImp implements PerfilService {
 
 	}
 
-	//MÉTODO QUE PERMITE OBTENER LOS PERFILES QUE AUN NO HAN RECIBIDO LIKE O DISLIKE DEL PERFIL QUE ESTA UTILIZANDO LA APLICACIÓN
+	// MÉTODO QUE PERMITE OBTENER LOS PERFILES QUE AUN NO HAN RECIBIDO LIKE O
+	// DISLIKE DEL PERFIL QUE ESTA UTILIZANDO LA APLICACIÓN
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
-		List<Perfil>lista=perfilDAOImp.listaPerfilDesconocido(perfil);
+		List<Perfil> lista = perfilDAOImp.listaPerfilDesconocido(perfil);
 		return lista;
 	}
-	
+
 	public List<Perfil> listaPerfilContacto(Perfil perfil) {
-			List<Perfil>lista=perfilDAOImp.listaPerfilContacto(perfil);
-			return lista;
+		List<Perfil> lista = perfilDAOImp.listaPerfilContacto(perfil);
+		return lista;
 	}
 
-	//MÉTODO QUE PERMITE AÑADIR UN PERFIL FALSO A LA BASE DE DATOS GENERADO POR EL MÉTODO "Generar"
+	// MÉTODO QUE PERMITE AÑADIR UN PERFIL FALSO A LA BASE DE DATOS GENERADO POR EL
+	// MÉTODO "Generar"
 	@Override
 	public void addPerfilFalso() {
 		perfilDAO.save(GeneradorPerfiles.Generar());
 	}
-	
-	//MÉTODO QUE PERMITE AÑADIR UN NUMERO DETERMINADO POR EL PARÁMETRO DE ENTRADA PERFIL FALSO A LA BASE DE DATOS GENERADO POR EL MÉTODO "Generar"
+
+	// MÉTODO QUE PERMITE AÑADIR UN NUMERO DETERMINADO POR EL PARÁMETRO DE ENTRADA
+	// PERFIL FALSO A LA BASE DE DATOS GENERADO POR EL MÉTODO "Generar"
 	public void addPerfilFalso(int num) {
 		for (int i = 0; i < num; i++) {
 			perfilDAO.save(GeneradorPerfiles.Generar());
 		}
 	}
 
-	//MÉTODO QUE LLAMA AL MÉTODO "findByNick" DE LA CAPA DAO Y DEVUELVE TODOS LOS DATOS DE SU PERFIL
+	// MÉTODO QUE LLAMA AL MÉTODO "findByNick" DE LA CAPA DAO Y DEVUELVE TODOS LOS
+	// DATOS DE SU PERFIL
 	@Override
-	public Perfil findByNickname(String nickname) {		
+	public Perfil findByNickname(String nickname) {
 		return perfilDAOImp.findByNick(nickname);
 	}
-	
-	//MÉTODO QUE LLAMA AL MÉTODO "findByNick" DE LA CAPA DAO Y BORRA EL PERFIL CON EL NICKNAME SELECCIONADO
+
+	// MÉTODO QUE LLAMA AL MÉTODO "findByNick" DE LA CAPA DAO Y BORRA EL PERFIL CON
+	// EL NICKNAME SELECCIONADO
 	public void delete(String nickname) {
 		perfilDAO.delete(perfilDAOImp.findByNick(nickname));
 	}
@@ -99,6 +106,17 @@ public class PerfilServiceImp implements PerfilService {
 	@Override
 	public void add(List<Perfil> lista) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public List<Perfil> listaPerfilDescarte(Perfil perfil) {
+		List<Perfil> lista = perfilDAOImp.listaPerfilDescarte(perfil);
+		return lista;
+	}
+	
+	public List<Contacto> listaPerfilMatch(Perfil perfil) {
+		List<Contacto>lista=perfilDAOImp.listaPerfilMatch(perfil);
+		return lista;
 	}
 }

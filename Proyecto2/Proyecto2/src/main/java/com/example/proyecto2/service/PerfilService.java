@@ -1,6 +1,8 @@
 package com.example.proyecto2.service;
 
 import java.util.List;
+
+import com.example.proyecto2.model.Contacto;
 import com.example.proyecto2.model.Perfil;
 
 /**
@@ -34,4 +36,8 @@ public interface PerfilService {
 	public Perfil findByNickname(String nickname);
 	
 	public void delete(String nickname);
+
+	public List<Perfil> listaPerfilDescarte(Perfil perfil);
+
+	public List<Contacto> listaPerfilMatch(Perfil perfil);
 }

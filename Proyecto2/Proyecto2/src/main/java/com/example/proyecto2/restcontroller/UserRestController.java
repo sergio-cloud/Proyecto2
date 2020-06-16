@@ -21,14 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.proyecto2.model.Contacto;
+import com.example.proyecto2.model.Descarte;
 import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
 import com.example.proyecto2.service.PerfilService;
 import com.example.proyecto2.service.PoblacionService;
 import com.example.proyecto2.service.ContactoService;
+import com.example.proyecto2.service.DescarteService;
 
 /**
- * @author Nino
+ * @author Nino, Sergio, Miguel
  * @version 05/06/2020
  */
 
@@ -44,6 +46,9 @@ public class UserRestController {
 
 	@Autowired
 	ContactoService ContactoService;
+	
+	@Autowired
+	DescarteService descarteService;
 
 	private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
@@ -132,7 +137,33 @@ public class UserRestController {
 		logger.info("---UseController > like (/like)");
 		ContactoService.like(contacto);
 	}
+	
+	// Dar Dislike
+	@PostMapping("/Dislike")
+	public void Dislike(@RequestBody Descarte descarte) {
+		logger.info("---UseRestController > Dislike (/Dislike)");
+		descarteService.dislike(descarte);
+	}
 
+	//DEVUELVE UNA LISTA DE DESCARTES POR USUARIO
+	@RequestMapping(value = "/descarte/listadescarte/{nickName}", method = RequestMethod.GET, headers = {
+	"Accept=application/json" }, produces = "application/json; charset=utf-8")
+	public List<Perfil> getListaDescarte(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p.setNickName(nickName);
+		logger.info("---Obteniendo lista de personas que han recibido Dislike del perfil entrante---");
+		return PerfilService.listaPerfilDescarte(p);
+	}
+	
+	@GetMapping(value = "/perfil/match/{nickName}")
+	public List<Contacto> getListaMatch(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p=PerfilService.findByNickname(nickName);
+		logger.info("----Obteniendo lista de matches del perfil entrante---");
+		logger.info(p.toString());
+		return PerfilService.listaPerfilMatch(p);
+	}
+	
 	/*
 	 * no funciona aún NINO
 	 * 

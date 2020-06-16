@@ -48,6 +48,12 @@ public class Perfil implements Serializable {
 	
 	@OneToMany(mappedBy = "nickname2")
 	private List<Contacto> listaContacto2;
+	
+	@OneToMany(mappedBy = "nickname1")
+	private List<Descarte> listaDescarte1;
+	
+	@OneToMany(mappedBy = "nickname2")
+	private List<Descarte> listaDescarte2;
 
 	public Perfil() {
 		super();
