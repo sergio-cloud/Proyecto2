@@ -155,6 +155,15 @@ public class UserRestController {
 		return PerfilService.listaPerfilDescarte(p);
 	}
 	
+	@GetMapping(value = "/perfil/match/{nickName}")
+	public List<Contacto> getListaMatch(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p=PerfilService.findByNickname(nickName);
+		logger.info("----Obteniendo lista de matches del perfil entrante---");
+		logger.info(p.toString());
+		return PerfilService.listaPerfilMatch(p);
+	}
+	
 	/*
 	 * no funciona aún NINO
 	 * 

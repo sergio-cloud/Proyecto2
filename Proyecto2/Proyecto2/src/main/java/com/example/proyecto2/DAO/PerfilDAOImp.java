@@ -5,6 +5,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
+
+import com.example.proyecto2.model.Contacto;
 import com.example.proyecto2.model.Perfil;
 
 /**
@@ -56,10 +58,10 @@ public class PerfilDAOImp {
 	// ESTA QUERY TE DEVUELVE UNA LISTA DE LOS CONTACTOS QUE HAS DADO LIKE Y TE HAN
 	// DADO LIKE
 
-	public List<Perfil> listaPerfilMatch(Perfil perfil) {
+	public List<Contacto> listaPerfilMatch(Perfil perfil) {
 		Query query = entityManager.createNativeQuery(
 				"SELECT * FROM contacto WHERE nickname1= ? AND nickname2 IN (SELECT nickname1 FROM contacto WHERE nickname2 =?);",
-				Perfil.class);
+				Contacto.class);
 		query.setParameter(1, perfil.getNickName());
 		query.setParameter(2, perfil.getNickName());
 		return query.getResultList();
