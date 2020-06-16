@@ -34,4 +34,6 @@ public interface PerfilService {
 	public Perfil findByNickname(String nickname);
 	
 	public void delete(String nickname);
+
+	public List<Perfil> listaPerfilDescarte(Perfil perfil);
 }
