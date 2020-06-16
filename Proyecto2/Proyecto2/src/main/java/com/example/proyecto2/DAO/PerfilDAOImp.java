@@ -28,7 +28,7 @@ public class PerfilDAOImp {
 				+ "nickname NOT IN\r\n" + "                (SELECT nickname2\r\n" + "                FROM contacto\r\n"
 				+ "                WHERE nickname1 = ?)\r\n" + "AND\r\n" + "nickname NOT IN\r\n"
 				+ "                (SELECT nickname2\r\n" + "                FROM descarte\r\n"
-				+ "                WHERE nickname1 = ?) LIMIT 10;", Perfil.class);
+				+ "                WHERE nickname1 = ?) LIMIT 1;", Perfil.class);
 		query.setParameter(1, perfil.getNickName());
 		query.setParameter(2, perfil.getNickName());
 		query.setParameter(3, perfil.getNickName());
@@ -60,6 +60,16 @@ public class PerfilDAOImp {
 		Query query = entityManager.createNativeQuery(
 				"SELECT * FROM contacto WHERE nickname1= ? AND nickname2 IN (SELECT nickname1 FROM contacto WHERE nickname2 =?);",
 				Perfil.class);
+		query.setParameter(1, perfil.getNickName());
+		query.setParameter(2, perfil.getNickName());
+		return query.getResultList();
+	}
+	
+	public List<Perfil> listaPerfilDescarte(Perfil perfil) {
+		Query query = entityManager.createNativeQuery("select * from perfil\r\n"  
+				+"  where nickname in (select nickname2 from descarte\r\n" 
+				+"                 where nickname2<>?\r\n" 
+				+"                 AND nickname1=?);", Perfil.class);
 		query.setParameter(1, perfil.getNickName());
 		query.setParameter(2, perfil.getNickName());
 		return query.getResultList();
