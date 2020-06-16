@@ -101,4 +101,10 @@ public class PerfilServiceImp implements PerfilService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public List<Perfil> listaPerfilDescarte(Perfil perfil) {
+		List<Perfil>lista=perfilDAOImp.listaPerfilDescarte(perfil);
+		return lista;
+}
 }
