@@ -23,6 +23,8 @@ public interface PerfilService {
 	
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil);
 	
+	public List<Perfil> listaPerfilContacto(Perfil perfil);
+	
 	public void add(List<Perfil> lista);
 	
 	public void addPerfilFalso();

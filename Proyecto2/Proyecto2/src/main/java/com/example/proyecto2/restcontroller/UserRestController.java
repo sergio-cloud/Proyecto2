@@ -8,12 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -30,6 +33,7 @@ import com.example.proyecto2.service.ContactoService;
  */
 
 //REST CONTROLLER DEVUELVE OBJETOS EN FORMATO JSON
+@CrossOrigin(origins = "*", maxAge = 5600)
 @RestController
 public class UserRestController {
 	@Autowired
@@ -70,7 +74,7 @@ public class UserRestController {
 		return PerfilService.findAll();
 	}
 
-	// DEVUELVE LISTA DE TODOS LOS CONTACTOS A LOS CUALES LES DIO LIKE EL USER
+	// DEVUELVE LISTA DE TODOS LOS CONTACTOS
 	// LOGEADO NINO
 	@RequestMapping(value = "/contacto/listado", method = RequestMethod.GET)
 
@@ -86,10 +90,28 @@ public class UserRestController {
 		logger.info("---Obteniendo contacto por Id---");
 		return ContactoService.findById(idContacto);
 	}
+	
+	//DEVUELVE UNA LISTA DE CONTACTOS POR USUARIO
+	@RequestMapping(value = "/contacto/listacontacto/{nickName}", method = RequestMethod.GET, headers = {
+	"Accept=application/json" }, produces = "application/json; charset=utf-8")
+	public List<Perfil> getListaContacto(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p.setNickName(nickName);
+		logger.info("---Obteniendo lista de personas que han recibido like del perfil entrante---");
+		return PerfilService.listaPerfilContacto(p);
+	}
+	
+	//DEVUELVE PERFILES DESCONOCIDOS RESPECTO AL PERFIL LOGEADO
+	@GetMapping(value = "/perfil/listadesconocido/{nickName}")
+	public List<Perfil> getListaDesconocido(@PathVariable String nickName){
+		Perfil p = new Perfil();
+		p.setNickName(nickName);
+		logger.info("----Obteniendo lista de personas desconocidas por perfil entrante---");
+		return PerfilService.listaPerfilDesconocido(p);
+	}
 
 	// DEVUELVE UN PERFIL REGISTRADO POR SU NICKNAME NINO
 	@GetMapping(value = "/perfil/{nickname}")
-
 	public Optional<Perfil> getPerfilByNicknamePerfil(@PathVariable String nickname) {
 		logger.info("---Obteniendo Perfil por nickname---");
 		return Optional.ofNullable(PerfilService.findByNickname(nickname));
@@ -97,13 +119,18 @@ public class UserRestController {
 
 	// AGREGA UN NUEVO PERFIL--REST NINO
 	@PostMapping(value = "/addPerfil")
-
 	public ResponseEntity<?> newPerfil(@RequestBody Perfil perfil) {
 		logger.info("---Creando un nuevo Perfil en REST---");
 		PerfilService.add(perfil);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{nickname}")
 				.buildAndExpand(perfil.getNickName()).toUri();
 		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping("/like")
+	public void like(@RequestBody Contacto contacto) {
+		logger.info("---UseController > like (/like)");
+		ContactoService.like(contacto);
 	}
 
 	/*

@@ -122,6 +122,7 @@ public class UseController {
 		model.addObject("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
 		logger.info("-- Datos del perfil 2" + perfil);
 		model.setViewName("bienvenida");
+		logger.info("Lista de likes" + PerfilService.listaPerfilContacto(perfil));
 		return model;
 	}
 	
