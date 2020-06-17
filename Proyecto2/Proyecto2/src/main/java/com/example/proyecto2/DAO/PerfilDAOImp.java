@@ -34,6 +34,7 @@ public class PerfilDAOImp {
 		query.setParameter(1, perfil.getNickName());
 		query.setParameter(2, perfil.getNickName());
 		query.setParameter(3, perfil.getNickName());
+
 		return query.getResultList();
 	}
 	
@@ -74,6 +75,22 @@ public class PerfilDAOImp {
 				+"                 AND nickname1=?);", Perfil.class);
 		query.setParameter(1, perfil.getNickName());
 		query.setParameter(2, perfil.getNickName());
+		return query.getResultList();
+	}
+	
+	
+	public List<Perfil> listaPerfilDesconocidoGenero(Perfil perfil) {
+		Query query = entityManager.createNativeQuery("SELECT * FROM perfil WHERE perfil.nickname <> ? AND\r\n"
+				+ "perfil.genero = ? AND\r\n"
+				+ "nickname NOT IN\r\n" + "                (SELECT nickname2\r\n" + "                FROM contacto\r\n"
+				+ "                WHERE nickname1 = ?)\r\n" + "AND\r\n" + "nickname NOT IN\r\n"
+				+ "                (SELECT nickname2\r\n" + "                FROM descarte\r\n"
+				+ "                WHERE nickname1 = ?) LIMIT 1;", Perfil.class);
+		query.setParameter(1, perfil.getNickName());
+		query.setParameter(2, perfil.getGenero());
+		query.setParameter(3, perfil.getNickName());
+		query.setParameter(4, perfil.getNickName());
+
 		return query.getResultList();
 	}
 }

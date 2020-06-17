@@ -114,6 +114,13 @@ public class UserRestController {
 		logger.info("----Obteniendo lista de personas desconocidas por perfil entrante---");
 		return PerfilService.listaPerfilDesconocido(p);
 	}
+	
+	//DEVUELVE PERFILES DESCONOCIDOS DEL GENERO DESEADO
+	@PostMapping(value = "/perfil/listadesconocidoGenero")
+	public List<Perfil> getListaDesconocidoGenero(@RequestBody Perfil perfil){
+		logger.info("----Obteniendo lista de personas desconocidas por perfil entrante y genero deseado---");
+		return PerfilService.listaPerfilDesconocidoGenero(perfil);
+	}
 
 	// DEVUELVE UN PERFIL REGISTRADO POR SU NICKNAME NINO
 	@GetMapping(value = "/perfil/{nickname}")

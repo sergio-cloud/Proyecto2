@@ -119,4 +119,10 @@ public class PerfilServiceImp implements PerfilService {
 		List<Contacto>lista=perfilDAOImp.listaPerfilMatch(perfil);
 		return lista;
 	}
+
+	@Override
+	public List<Perfil> listaPerfilDesconocidoGenero(Perfil perfil) {
+		List<Perfil> lista = perfilDAOImp.listaPerfilDesconocidoGenero(perfil);
+		return lista;
+	}
 }
