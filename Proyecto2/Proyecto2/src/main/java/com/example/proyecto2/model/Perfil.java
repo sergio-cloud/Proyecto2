@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
  *
  */
 
+//CLASE QUE GENERA UN OBJETO QUE GUARDA DIVERSOS DATOS DE LA PERSONA LOGGEADA PARA HACER FUNCIONAR LA APLICACION
+// ASI COMO PARA INTRODUCIRLA EN LA BASE DE DATOS Y GUARDARLA
 @Entity
 public class Perfil implements Serializable {
 

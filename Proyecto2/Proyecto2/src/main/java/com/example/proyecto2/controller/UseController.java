@@ -25,7 +25,7 @@ import com.example.proyecto2.model.Perfil;
 import com.example.proyecto2.model.Poblacion;
 
 /**
- * @author Sergio
+ * @author Sergio, Nino, Miguel, Alvaro
  * @version 02/06/2020
  *
  */
@@ -63,7 +63,7 @@ public class UseController {
 			logger.info("--- Hay algunos errores");
 			return "login";
 		}
-		// SI TE LOGEAS BIEN, ENTRAS EN LA APLICACION
+		// SI TE LOGEAS BIEN, ENTRAS EN LA APLICACION Y SE GENERA UN PERFIL FALSO
 		if (PerfilService.isPerfil(perfil.getNickName(), perfil.getPassword())) {
 			model.addAttribute("perfil", perfil);
 			model.addAttribute("success", "Estimado " + perfil.getNickName() + " , se ha loggeado de forma correcta");
@@ -79,7 +79,7 @@ public class UseController {
 		return "login";
 	}
 
-	// GENERAMOS Y ENVIAMOS UN PERFIL Y UNA POBLACION VACIA, TMBN ENVIAMOS LA LISTA
+	// GENERAMOS Y ENVIAMOS UN PERFIL Y UNA POBLACION VACIA, TAMBIEN ENVIAMOS LA LISTA
 	// DE POBLACION, PARA GENERAR UN PERFIL NUEVO
 	@GetMapping("/altaPerfil")
 	public String registroPerfil(ModelMap model) throws Exception {
@@ -100,7 +100,7 @@ public class UseController {
 			logger.info("--- Hay algunos errores");
 			return "altaPerfil";
 		}
-		//SI ENCUENTRA EL PERFIL EN LA BBDD Y EL NICKNAME Y LA PASS SON LOS MISMOS ENTRAS EN LA APP
+		//SI ENCUENTRA EL PERFIL EN LA BBDD Y EL NICKNAME Y LA PASSWORD SON LOS MISMOS ENTRAS EN LA APP
 		if (!PerfilService.existe(perfil.getNickName())) {
 			PerfilService.add(perfil);
 			model.addAttribute("success",
@@ -115,7 +115,7 @@ public class UseController {
 		}
 	}
 	
-	//TE MUESTRA LA PAGINA CON LA LISTA DE PERFILES DESCONOCIDOS PARA AR LIKE O DISLIKE
+	//TE MUESTRA LA PAGINA CON LA LISTA DE PERFILES DESCONOCIDOS PARA DAR LIKE O DISLIKE
 	@GetMapping("/bienvenida")
 	public ModelAndView bienvenida(@ModelAttribute Perfil perfil, ModelAndView model) {
 		logger.info("--- UseController > Bienvenida (get)");
@@ -126,17 +126,8 @@ public class UseController {
 		return model;
 	}
 	
-	/*
-	@PostMapping("/bienvenida")
-	public ModelAndView bienvenida2(@ModelAttribute Perfil perfil, ModelAndView model) {
-		logger.info("--- UseController > Bienvenida (post)");
-		model.addObject("listaDesconocido", PerfilService.listaPerfilDesconocido(perfil));
-		logger.info("---------------------------- Datos del perfil 3" + perfil);
-		model.setViewName("bienvenida");
-		return model;
-	}*/
 	
-	//RECOGEMOS EL NICKNAME DEL PERFIL QUE RECIBE EL 'LIKE' + EL DE LA SESSION Y LOS INSERTAMOS EN LA TABLA CONTACTO
+	//RECOGEMOS EL NICKNAME DEL PERFIL QUE RECIBE EL 'LIKE' Y EL DE LA SESION Y LOS INSERTAMOS EN LA TABLA CONTACTO
 	@GetMapping("/like")
 	public String like(@ModelAttribute Perfil perfil, @RequestParam("perfil2") String perfil2, ModelAndView model) {
 		logger.info("---UseController > like (/like)");
@@ -148,7 +139,7 @@ public class UseController {
 		contactoService.like(contacto);
 		return "redirect:/bienvenida";
 	}
-	//RECOGEMOS EL NICKNAME DEL PERFIL QUE RECIBE EL 'DISLIKE' + EL DE LA SESSION Y LOS INSERTAMOS EN LA TABLA DESCARTE
+	//RECOGEMOS EL NICKNAME DEL PERFIL QUE RECIBE EL 'DISLIKE' Y EL DE LA SESION Y LOS INSERTAMOS EN LA TABLA DESCARTE
 	@GetMapping("/dislike")
 	public String dislike(@ModelAttribute Perfil perfil, @RequestParam("perfil2") String perfil2, ModelAndView model) {
 		logger.info("---------------------------- Datos del perfil 5" + perfil);

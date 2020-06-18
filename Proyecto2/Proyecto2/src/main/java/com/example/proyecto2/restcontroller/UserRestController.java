@@ -10,13 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -30,7 +28,7 @@ import com.example.proyecto2.service.ContactoService;
 import com.example.proyecto2.service.DescarteService;
 
 /**
- * @author Nino, Sergio, Miguel
+ * @author Nino, Sergio, Miguel, Alvaro
  * @version 05/06/2020
  */
 
@@ -52,37 +50,32 @@ public class UserRestController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
-	// LISTADO DE TODAS LAS POBLACIONES NINO
+	// LISTADO DE TODAS LAS POBLACIONES
 	@RequestMapping(value = "/poblacion/listado", method = RequestMethod.GET, headers = {
 			"Accept=application/json" }, produces = "application/json; charset=utf-8")
-
 	public List<Poblacion> getPoblacion() {
 		logger.info("---En listado: Poblaciones");
 		return PoblacionService.findAll();
 	}
 
-	// DEVUELVE UNA POBLACION (idPoblacion) SERGIO
+	// DEVUELVE UNA POBLACION (idPoblacion)
 	@RequestMapping(value = "/poblacion/{idPoblacion}", method = RequestMethod.GET, headers = {
 			"Accept=application/json" }, produces = "application/json; charset=utf-8")
-
 	public Optional<Poblacion> getPoblacionByIdPoblacion(@PathVariable int idPoblacion) {
 		logger.info("---Obteniendo población por Id---");
 		return PoblacionService.findByPoblacion(idPoblacion);
 	}
 
-	// DEVUELVE LISTADO DE TODOS LOS PERFILES REGISTRADOS NINO
+	// DEVUELVE LISTADO DE TODOS LOS PERFILES REGISTRADOS
 	@RequestMapping(value = "/perfil/listado", method = RequestMethod.GET, headers = {
 			"Accept=application/json" }, produces = "application/json; charset=utf-8")
-
 	public List<Perfil> getPerfiles() {
 		logger.info("---En listado: Perfil");
 		return PerfilService.findAll();
 	}
 
 	// DEVUELVE LISTA DE TODOS LOS CONTACTOS
-	// LOGEADO NINO
 	@RequestMapping(value = "/contacto/listado", method = RequestMethod.GET)
-
 	public List<Contacto> getContacto() {
 		logger.info("---En listado: Contacto");
 		return ContactoService.findAll();
@@ -90,7 +83,6 @@ public class UserRestController {
 
 	// DEVUELVE LOS CONTACTOS POR SU ID NINO
 	@GetMapping(value = "/contacto/{idContacto}")
-
 	public Optional<Contacto> getContactoByIdContacto(@PathVariable int idContacto) {
 		logger.info("---Obteniendo contacto por Id---");
 		return ContactoService.findById(idContacto);
@@ -139,13 +131,14 @@ public class UserRestController {
 		return ResponseEntity.created(location).build();
 	}
 	
+	//EJECUTA LA ACCION "DAR LIKE"
 	@PostMapping("/like")
 	public void like(@RequestBody Contacto contacto) {
 		logger.info("---UseController > like (/like)");
 		ContactoService.like(contacto);
 	}
 	
-	// Dar Dislike
+	// EJECUTA LA ACCION "DAR DISLIKE"
 	@PostMapping("/Dislike")
 	public void Dislike(@RequestBody Descarte descarte) {
 		logger.info("---UseRestController > Dislike (/Dislike)");
@@ -162,6 +155,7 @@ public class UserRestController {
 		return PerfilService.listaPerfilDescarte(p);
 	}
 	
+	//DEVUELVE UNA LISTA CON LOS MATCHES DE UN USUARIO
 	@GetMapping(value = "/perfil/match/{nickName}")
 	public List<Contacto> getListaMatch(@PathVariable String nickName){
 		Perfil p = new Perfil();
@@ -171,10 +165,4 @@ public class UserRestController {
 		return PerfilService.listaPerfilMatch(p);
 	}
 	
-	/*
-	 * no funciona aún NINO
-	 * 
-	 * @DeleteMapping("/{nickname}") public void deletePerfil(@PathVariable String
-	 * nickname) { PerfilService.delete(nickname); }
-	 */
 }

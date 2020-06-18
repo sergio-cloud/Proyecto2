@@ -21,10 +21,8 @@ public class PerfilDAOImp {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	// CON ESTA QUERY ESTAMOS DEVOLVIENDO UN PERFIL QUE NO SE ENCUENTRE NI EN LA
-	// TABLA CONTACTO NI EN LA TABLA DESCARTE
-	// Y QUE ADEMAS SEA DIFERENTE AL USUARIO QUE SE HA LOGEADO
-
+    //ESTE METODO NOS PERMITE SACAR UNA LISTA DE PERFILES DESCONOCIDOS POR UL PERFIL LOGGEADO
+	//DE LA TABLA "perfil"
 	public List<Perfil> listaPerfilDesconocido(Perfil perfil) {
 		Query query = entityManager.createNativeQuery("SELECT * FROM perfil WHERE perfil.nickname <> ? AND\r\n"
 				+ "nickname NOT IN\r\n" + "                (SELECT nickname2\r\n" + "                FROM contacto\r\n"
@@ -38,6 +36,8 @@ public class PerfilDAOImp {
 		return query.getResultList();
 	}
 	
+	//ESTE METODO NOS PERMITE OBTENER UNA LISTA DE PERFILES QUE HAN RECIBIDO "like" DEL
+	//PERFIL LOGGEADO
 	public List<Perfil> listaPerfilContacto(Perfil perfil) {
 		Query query = entityManager.createNativeQuery("select * from perfil\r\n"  
 				+"  where nickname in (select nickname2 from contacto\r\n" 
@@ -48,17 +48,16 @@ public class PerfilDAOImp {
 		return query.getResultList();
 	}
 
-	// USAMOS ESTA QUERY PARA BUSCAR UN PERFIL BASADO EN SU NICKNAME
-
+	
+    //ESTE METODO NOS PERMITE ENCONTRAR UN PERFIL EN LA TABLA "perfil" A TRAVES DE SU NICKNAME
 	public Perfil findByNick(String nickname) {
 		Query query = entityManager.createNativeQuery("SELECT * FROM perfil WHERE perfil.nickname=? ;", Perfil.class);
 		query.setParameter(1, nickname);
 		return (Perfil) query.getSingleResult();
 	}
 
-	// ESTA QUERY TE DEVUELVE UNA LISTA DE LOS CONTACTOS QUE HAS DADO LIKE Y TE HAN
-	// DADO LIKE
-
+	
+	//ESTE METODO DEVUELVE UNA LISTA CON LOS PERFILES QUE HAN DADO LIKE AL PERFIL LOGGEADO Y VICEVERSA
 	public List<Contacto> listaPerfilMatch(Perfil perfil) {
 		Query query = entityManager.createNativeQuery(
 				"SELECT * FROM contacto WHERE nickname1= ? AND nickname2 IN (SELECT nickname1 FROM contacto WHERE nickname2 =?);",
@@ -68,6 +67,7 @@ public class PerfilDAOImp {
 		return query.getResultList();
 	}
 	
+	//ESTE METODO PERMITE OBTENER UNA LISTA CON LOS PERFILES QUE HA DESCARTADO EL PERFIL LOGGEADO
 	public List<Perfil> listaPerfilDescarte(Perfil perfil) {
 		Query query = entityManager.createNativeQuery("select * from perfil\r\n"  
 				+"  where nickname in (select nickname2 from descarte\r\n" 
@@ -79,6 +79,8 @@ public class PerfilDAOImp {
 	}
 	
 	
+	//ESTE METODO PERMITE OBTENER UNA LISTA DE PERFILES QUE NO HAN RECIBIDO "like" NI "dislike" DEL USUARIO LOGGEADO
+	//Y ADEMAS FILTRARLOS POR GENERO
 	public List<Perfil> listaPerfilDesconocidoGenero(Perfil perfil) {
 		Query query = entityManager.createNativeQuery("SELECT * FROM perfil WHERE perfil.nickname <> ? AND\r\n"
 				+ "perfil.genero = ? AND\r\n"

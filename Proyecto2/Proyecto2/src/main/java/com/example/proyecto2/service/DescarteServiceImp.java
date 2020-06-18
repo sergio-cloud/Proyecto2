@@ -22,7 +22,7 @@ public class DescarteServiceImp implements DescarteService {
 	 * @version 04/06/2020
 	 *
 	 */
-	//MÉTODO QUE LLAMA AL MÉTODO "descarteDAO" de la capa DAO
+	//MÉTODO QUE LLAMA AL MÉTODO "descarteDAO" DE LA CAPA DAO
 	public void dislike(Descarte descarte) {
 		descarteDAO.save(descarte);
 	}

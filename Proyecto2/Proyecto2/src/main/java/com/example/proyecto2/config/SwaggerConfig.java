@@ -15,8 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @version 09/06/2020
  *
  */
-//PARA PODER VER LA DOCUMENTACIÓN EN FORMATO GRÁFICO ENTRAR EN: http://localhost:8080/swagger-ui.html
-//PARA PODER VER LA DOCUMENTACIÓN VISUALIZADO COMO DATOS DE LA MÁQUINA ENTRAR EN: http://localhost:8080/v2/api-docs
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

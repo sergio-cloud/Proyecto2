@@ -9,7 +9,7 @@ import com.github.javafaker.Faker;
 
 
 /**
- * @author ALVARO
+ * @author Alvaro
  * @version 05/06/2020
  */
 public class GeneradorPerfiles {

@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
  * @version 08/06/2020
  */
 
+//CLASE PARA GENERAR UN OBJETO QUE TIENE DOS PERFILES DONDE EL "nickname1" HA DADO "dislike" AL NICKNAME2
 @Entity
 public class Descarte implements Serializable {
 	

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
  * @version 05/06/2020
  */
 
+
+//CLASE PARA GENERAR UN OBJETO QUE TIENE DOS PERFILES DONDE EL "nickname1" HA DADO "like" AL NICKNAME2
 @Entity
 public class Contacto implements Serializable{
 	

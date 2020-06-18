@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
  *
  */
 
+//CLASE QUE GENERA UN OBJETO PARA GUARDAR A LOS PERFILES POR LUGARES
 @Entity
 public class Poblacion implements Serializable {
 
