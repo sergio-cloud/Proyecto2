@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
  * @version 04/06/20
  *
  */
+
+//CLASE CUYOS OBJETOS SE RELACIONAN DIRECTAMENTE CON LA TABLA "descarte"
 @Repository
 public class DescarteDAOImp {
 

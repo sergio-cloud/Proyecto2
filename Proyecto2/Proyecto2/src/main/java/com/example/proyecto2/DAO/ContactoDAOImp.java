@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
  * @version 04/06/20
  *
  */
+
+//CLASE CUYOS OBJETOS SE RELACIONAN DIRECTAMENTE CON LA TABLA "contacto"
 @Repository
 public class ContactoDAOImp {
 

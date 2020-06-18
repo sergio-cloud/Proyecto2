@@ -50,7 +50,7 @@ public class PerfilServiceImp implements PerfilService {
 		return false;
 	}
 
-	// MÉTODO QUE PERMITE SABER SI UN NICKNAME Y UNA PASWORD PERTENCEN A UN PERFIL
+	// MÉTODO QUE PERMITE SABER SI UN NICKNAME Y UNA PASSWORD PERTENECEN A UN PERFIL
 	public boolean isPerfil(String nombre, String pass) {
 		List<Perfil> comprobar = perfilDAO.findAll();
 		for (int i = 0; i < comprobar.size(); i++) {
@@ -70,6 +70,7 @@ public class PerfilServiceImp implements PerfilService {
 		return lista;
 	}
 
+	//METODO QUE OBTIENE LA LISTA DE TODOS LOS CONTACTOS DE UN PERFIL
 	public List<Perfil> listaPerfilContacto(Perfil perfil) {
 		List<Perfil> lista = perfilDAOImp.listaPerfilContacto(perfil);
 		return lista;
@@ -82,7 +83,7 @@ public class PerfilServiceImp implements PerfilService {
 		perfilDAO.save(GeneradorPerfiles.Generar());
 	}
 
-	// MÉTODO QUE PERMITE AÑADIR UN NUMERO DETERMINADO POR EL PARÁMETRO DE ENTRADA
+	// METODO QUE PERMITE ANADIR UN NUMERO DETERMINADO POR EL PARAMETRO DE ENTRADA
 	// PERFIL FALSO A LA BASE DE DATOS GENERADO POR EL MÉTODO "Generar"
 	public void addPerfilFalso(int num) {
 		for (int i = 0; i < num; i++) {
@@ -105,21 +106,24 @@ public class PerfilServiceImp implements PerfilService {
 
 	@Override
 	public void add(List<Perfil> lista) {
-		// TODO Auto-generated method stub
 
 	}
 
+	//METODO QUE OBTIENE UNA LISTA DE PERFILES DESCARTADOS POR EL PERFIL
 	@Override
 	public List<Perfil> listaPerfilDescarte(Perfil perfil) {
 		List<Perfil> lista = perfilDAOImp.listaPerfilDescarte(perfil);
 		return lista;
 	}
 	
+	//METODO QUE OBTIENE UNA LISTA DE LOS MATCHES DE UN PERFIL
+	@Override
 	public List<Contacto> listaPerfilMatch(Perfil perfil) {
 		List<Contacto>lista=perfilDAOImp.listaPerfilMatch(perfil);
 		return lista;
 	}
 
+	//METODO QUE OBTIENE UNA LISTA DE PERFILES DESCONOCIDO FILTRADOS POR GENERO
 	@Override
 	public List<Perfil> listaPerfilDesconocidoGenero(Perfil perfil) {
 		List<Perfil> lista = perfilDAOImp.listaPerfilDesconocidoGenero(perfil);

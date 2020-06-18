@@ -36,7 +36,7 @@ public class ContactoServiceImp implements ContactoService {
 	 * @version 07/06/2020
 	 *
 	 */
-	//LISTA DE TODOS LOS CONCATOS DE UN PERFIL
+	//LISTA DE TODOS LOS CONTACTOS DE UN PERFIL
 	public List<Contacto> findAll() {
 		
 		return contactoDAO.findAll();
